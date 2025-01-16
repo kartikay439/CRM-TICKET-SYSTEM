@@ -1,9 +1,9 @@
 import jwt from "jsonwebtoken"
 
 class AuthService {
-    constructor(secret) {
-        this.secret = secret
-    }
+    // constructor(secret) {
+    //     this.secret = secret
+    // }
 
     generateAccessToken(user) {
         return jwt.sign(
@@ -12,9 +12,9 @@ class AuthService {
                 name: user.name,
                 email: user.email
             },
-            this.secret.passphrase,
+            process.env.ACCESS_TOKEN_SECRET,
             {
-                expiresIn: this.secret.expiresIn,
+                expiresIn: process.env.ACCESS_TOKEN_EXPIRY,
             }
         )
     }
@@ -24,9 +24,9 @@ class AuthService {
             {
                 id: user._id,
             },
-            this.secret.passphrase,
+            process.env.REFRESH_TOKEN_SECRET,
             {
-                expiresIn: this.secret.expiresIn
+                expiresIn: process.env.REFRESH_TOKEN_EXPIRY
             }
         )
     }

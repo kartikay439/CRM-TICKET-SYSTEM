@@ -6,3 +6,5 @@ class UserRepository {
         throw new Error("Method not Implemented")
     }
 }
+
+export  default UserRepository

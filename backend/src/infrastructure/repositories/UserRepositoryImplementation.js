@@ -1,5 +1,6 @@
 import UserModel from '../db/model/user.model.js'
 import UserRepository from '../../domain/repositories/UserRepository.js'
+import user from "../../domain/entities/User.js";
 
 class UserRepositoryImpl extends UserRepository {
     async findByEmail(email) {
@@ -7,10 +8,19 @@ class UserRepositoryImpl extends UserRepository {
     }
 
     async save(user) {
-        const userDocument = new UserModel(user);
-        return userDocument.save();
+        console.log( {
+           user
+        })
+       const userOnDB =await UserModel.create(
+           {
+               email: user.email,
+               password: user.password,
+               name: user.name,
+           }
+       )
+        console.log(user+"user on domain model")
+        return userOnDB;
     }
 }
 
-export default class UserRepositoryImpl {
-}
+export default  UserRepositoryImpl

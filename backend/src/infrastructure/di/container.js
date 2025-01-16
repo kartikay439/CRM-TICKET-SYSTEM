@@ -12,6 +12,8 @@ container.register({
         secret: {
 
         } })),
-    registerUserUseCase: asFunction(registerUser),
+    registerUseCase: asFunction(registerUser),
     loginUserUseCase: asFunction(loginUser),
 });
+
+export default container;
