@@ -5,6 +5,9 @@ class UserRepository {
     async save(user){
         throw new Error("Method not Implemented")
     }
+    async createToken(user){
+        throw new Error("Method not Implemented")
+    }
 }
 
 export  default UserRepository

@@ -1,3 +1,5 @@
+import UserRepositoryImpl from "../infrastructure/repositories/UserRepositoryImplementation.js";
+
 class ApiError extends Error {
     constructor(statusCode, message = "Something Went Wrong", error = [], stack = "") {
         super(message);
@@ -13,3 +15,5 @@ class ApiError extends Error {
         }
     }
 }
+
+export default ApiError;
