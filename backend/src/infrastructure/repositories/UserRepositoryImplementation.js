@@ -36,7 +36,7 @@ class UserRepositoryImpl extends UserRepository {
             console.log("Saving accessToken");
             userFound.refreshToken = refreshToken;
             await userFound.save({ validateBeforeSave: true });
-            return accessToken;
+            return {accessToken,refreshToken};
         } catch (error) {
             console.error("Error creating tokens:", error);
             throw error;

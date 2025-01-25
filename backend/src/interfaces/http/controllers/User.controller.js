@@ -6,6 +6,8 @@ import userRepositoryImplementation from "../../../infrastructure/repositories/U
 import {sendVerificationEmail} from "../../../utils/Email.js";
 import apiResponse from "../../../utils/ApiResponse.js";
 import ApiError from "../../../utils/ApiError.js";
+import jwt from "jsonwebtoken";
+import verify from "../../../application/useCases/user.usecase/VerifyUser.js";
 
 const repo = new userRepositoryImplementation()
 
@@ -14,7 +16,7 @@ const options = {
     secure: true,
 }
 
-const register = asyncHandler(
+const signup = asyncHandler(
     async (req, res, {registerUseCase, userRepository}) => {
         //testing purpose
         const {email, name, password} = req.body;
@@ -34,15 +36,26 @@ const register = asyncHandler(
 
         const otp = 5439;
 
-        const isSend = await sendVerificationEmail(email,otp)
+        const isSend = await sendVerificationEmail(email, otp)
         if (!isSend) {
             console.log("code not send")
         }
 
+        const token = jwt.sign(
+            {
+                email,
+                otp
+            },
+            process.env.VERIFY_TOKEN_SECRET,
+            {
+                expiresIn: process.env.VERIFY_TOKEN_EXPIRY,
+            }
+        )
+
         // here token will go
         //tke will contain id
 
-        res.status(200).cookie("otp", otp, options).cookie("email", user.email)
+        res.status(200).cookie("token", token, options).cookie("email", user.email)
             .json(
                 new ApiResponse(
                     200,
@@ -54,16 +67,20 @@ const register = asyncHandler(
     }
 )
 
-const varifyUser = asyncHandler(
+const verifyUser = asyncHandler(
     async (req, res) => {
-        const otpA = req.body.otp;
-        const otpB = req.cookies?.otp;
-        const email  = req.cookies?.email;
-        const user = await repo.findByEmail(email)
+        const otp = req.body.otp;
+        const token = req.cookies?.token;
 
-        if (otpA === otpB) {
-            user.isVerified = true;
-            await user.save({validateBeforeSave: true})
+        console.log("token", token);
+        console.log(jwt.verify(token, process.env.VERIFY_TOKEN_SECRET).email);
+        let isVerified
+        isVerified = await verify(token, otp, repo)
+
+        console.log(isVerified);
+
+        if (isVerified) {
+            console.log("verification email");
             res.status(200).json(
                 new ApiResponse(200, "otp verification successfully")
             );
@@ -76,23 +93,29 @@ const varifyUser = asyncHandler(
     }
 )
 
+//after successfull verification you will be ca login on
 
-const loginUserC = asyncHandler(
+
+const signin= asyncHandler(
     async (req, res) => {
         console.log(req.body);
         const email = req.body.email;
         const password = req.body.password;
+
+
         console.log(email, password);
-        const accessToken = await loginUser(repo, email, password)
+        const {accessToken, refreshToken} = await loginUser(repo, email, password)
         console.log(accessToken);
         if (!accessToken) {
             throw new ApiError("unable to generate access token");
         }
 
 
-        res.status(200).cookies("accessToken", accessToken, options).json(
-            new ApiResponse(200, "user login successfully")
+        res.status(200)
+            .cookie("accessToken", accessToken, options)
+            .cookie("refreshToken", refreshToken, options)
+            .json(new ApiResponse(200, "user login successfully")
         )
     }
 )
-export {register, loginUserC, varifyUser}
+export {signin,signup, verifyUser}

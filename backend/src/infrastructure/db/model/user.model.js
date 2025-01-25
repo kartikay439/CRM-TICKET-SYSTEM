@@ -14,10 +14,15 @@ const UserSchema = new Schema(
             type:String,
             required:true,
         },
+        isAdmin:{
+            type:Boolean,
+            default:false,
+        },
         isVerified: {
             type:Boolean,
             default:false
         },
+        //suppose if token cookie cleared
         refreshToken:{
             type:String,
         }
