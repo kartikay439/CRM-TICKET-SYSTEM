@@ -8,6 +8,8 @@ async function registerUser(userRepository,userData)
     if(existingUser){
         throw new Error("User already exists")
     }
+
+    //Password is encrypted
     const hashedPassword = await bcrypt.hash(userData.password, 10)
     const user = new User(userData.full_name,userData.email,hashedPassword)
     return await userRepository.save(user)
