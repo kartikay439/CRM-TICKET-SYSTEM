@@ -1,0 +1,182 @@
+import React, { useState } from "react";
+import styled from "styled-components";
+
+export const Reset_Password = () => {
+  const [passwordVisible, setPasswordVisible] = useState(false);
+  const [confirmPasswordVisible, setConfirmPasswordVisible] = useState(false);
+  const [password, setPassword] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
+  const [errorMessage, setErrorMessage] = useState("");
+
+  const handleValidation = (e) => {
+    e.preventDefault();
+    if (password !== confirmPassword) {
+      setErrorMessage("Passwords do not match!");
+    } else {
+      setErrorMessage("");
+      alert("Password reset successful!");
+    }
+  };
+
+  return (
+        <StyledCard>
+          <div className="container" >
+            <div className="card">
+          <h2>Reset Password</h2>
+          <form className="formField" onSubmit={handleValidation}>
+            <div className="input-container">
+              <input
+                type={passwordVisible ? "text" : "password"}
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                required
+              />
+              <span>Password</span>
+              <button
+                type="button"
+                className="password-toggle"
+                onClick={() => setPasswordVisible(!passwordVisible)}
+              >
+                {passwordVisible ? "Hide" : "Show"}
+              </button>
+            </div>
+            <div className="input-container">
+              <input
+                type={confirmPasswordVisible ? "text" : "password"}
+                value={confirmPassword}
+                onChange={(e) => setConfirmPassword(e.target.value)}
+                required
+              />
+              <span>Confirm Password</span>
+              <button
+                type="button"
+                className="password-toggle"
+                onClick={() =>
+                  setConfirmPasswordVisible(!confirmPasswordVisible)
+                }
+              >
+                {confirmPasswordVisible ? "Hide" : "Show"}
+              </button>
+            </div>
+            {errorMessage && <p className="error-message">{errorMessage}</p>}
+            <button type="submit" className="button"> Reset Password </button>
+          </form>
+          </div>
+          </div>
+        </StyledCard>
+  );
+};
+
+
+
+
+const StyledCard = styled.div`
+
+.card{
+ padding: 40px;
+  border-radius: 20px;
+ max-width: 500px;
+  width: 90%;
+  text-align: center;
+ background: rgba(255, 255, 255, 0); /* Semi-transparent background */
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+    backdrop-filter: blur(10px); /* Frosted glass effect */
+    -webkit-backdrop-filter: blur(10px); /* Safari support */
+    border: 1px solid rgba(255, 255, 255, 0.3); /* Border for glass effect */
+  }
+  .container {
+    background: repeating-radial-gradient(circle, rgb(26, 133, 233), rgb(104, 183, 230) 1em, white 1em, white 2em);
+    background-size: 20px 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  width: 100vw;
+
+  @media (min-width: 270px) and (max-width: 400px) {
+    height: 150vh;
+    width: 150vw;
+  }
+  @media (min-width: 0px) and (max-width: 270px) {
+    height: 400vh;
+    width: 400vw;
+  }
+  h2 {
+    margin-bottom: 20px;
+    font-size: 24px;
+    color: black;
+    text-decoration: underline;
+    text-decoration-thickness:3px;
+  }
+
+  .formField {
+    margin: 10px;
+    }
+    .input-container {
+      position: relative;
+      margin-bottom: 20px;
+    }
+
+    input {
+      width: 100%;
+      padding: 10px 15px;
+      border: none;
+      border-radius: 5px;
+      background-color:rgb(226, 222, 222);
+      color: #333;
+      font-size: 16px;
+      font-weight: 550;
+      transition: 0.3s ease-in-out;
+      box-shadow: 0 0 0 5px transparent;
+      border:2px solid black;
+    }
+
+    input:hover,
+    input:focus {
+      box-shadow: 0 0 0 2px #333;
+    }
+
+    span {
+      position: absolute;
+      top: 50%;
+      left: 15px;
+      transform: translateY(-50%);
+      color: black;
+      font-size: 16px;
+      font-weight: 600;
+      pointer-events: none;
+      transition: 0.3s ease-in-out;
+    }
+
+    input:focus + span,
+    input:valid + span {
+      transform: translateY(-47px) translateX(-5px) scale(0.95);
+    }
+
+    .password-toggle {
+      position: absolute;
+      top: 50%;
+      right: 10px;
+      transform: translateY(-50%);
+      background: none;
+      border: none;
+      color: #333;
+      cursor: pointer;
+      font-size: 14px;
+      font-weight: bold;
+    }
+
+    .error-message {
+      color: red;
+      font-size: 14px;
+      margin-top: -10px;
+      margin-bottom: 10px;
+    }
+      .button{
+      background-color:black;
+      color:white;
+      border:2px solid white;
+       border-radius:15px;
+      
+      }
+`;
