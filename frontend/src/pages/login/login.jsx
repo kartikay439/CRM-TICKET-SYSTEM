@@ -51,7 +51,7 @@ const StyledWrapper = styled.div`
 .container {
   width: 100%;
   height: 100%;
-  background: repeating-radial-gradient(circle, rgb(26, 133, 233), rgb(104, 183, 230) 1em, white 1em, white 2em);
+  background: repeating-radial-gradient(circle, rgb(112, 116, 120), rgb(233, 239, 243) 1em, white 1em, white 2em);
    background-size: 20px 20px;
 
    @media(min-width:270px) and (max-width:400px) {
