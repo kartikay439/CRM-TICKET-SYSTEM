@@ -1,9 +1,9 @@
 import React from 'react';
-import {Header_user_dashboard} from "./header";
-import {Footer_all} from "../home/footer_all";
-import {Ticket_table} from "./ticket_table";
+import {Header_user_dashboard} from "./header.jsx";
+import {Footer_all} from "../home/footer_all.jsx";
+import {Ticket_table} from "./ticket_table.jsx";
 import styled from 'styled-components';
-import { Show_Hide } from './show_hide';
+import { Show_Hide } from './show_hide.jsx';
 import './ticket_table.css';
 export const User_dashboard = () => {
     return (

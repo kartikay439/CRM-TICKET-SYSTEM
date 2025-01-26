@@ -4,9 +4,9 @@ import logo from '../assets/img/logo.png';
 import img1 from '../assets/img/Cloud_Hosting_img.png';
 import img2 from '../assets/img/Customer_Satisfaction_img.png';
 import img3 from '../assets/img/Notification_System_img.png';
-import {Footer_all} from './footer_all';
-import {Header} from './header';
-import {Show_Hide} from './show_hide';
+import {Footer_all} from './footer_all.jsx';
+import {Header} from './header.jsx';
+import {Show_Hide} from './show_hide.jsx';
 export const Homepage=()=>{
    return (
     <div className="homepage">

@@ -1,12 +1,12 @@
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import { Register } from './pages/register/register';
-import { Homepage } from './home/homepage';
-import { Login } from './pages/login/login';
-import {Forgot_Password} from './pages/forgot_password/forgot_password';
-import { Reset_Password } from './pages/reset_password/reset_password';
-import {User_dashboard} from './User-functionalities/User-dashboard';
-import {Add_new_ticket} from './User-functionalities/add_new_ticket/Add_new_ticket';
+import { Register } from './pages/register/register.jsx';
+import { Homepage } from './home/homepage.jsx';
+import { Login } from './pages/login/login.jsx';
+import {Forgot_Password} from './pages/forgot_password/forgot_password.jsx';
+import { Reset_Password } from './pages/reset_password/reset_password.jsx';
+import {User_dashboard} from './User-functionalities/User-dashboard.jsx';
+import {Add_new_ticket} from './User-functionalities/add_new_ticket/Add_new_ticket.jsx';
 import './App.css';
 
 function App() {

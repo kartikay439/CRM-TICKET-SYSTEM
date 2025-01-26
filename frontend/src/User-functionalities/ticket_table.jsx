@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import user_issue from "../assets/user_table";
+import user_issue from "../assets/user_table.js";
 import "./ticket_table.css";
 
 export const Ticket_table = () => {

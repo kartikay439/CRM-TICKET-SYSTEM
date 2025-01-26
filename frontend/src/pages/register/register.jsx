@@ -1,6 +1,6 @@
 import { React, useState } from 'react';
-import "./Register.css";
-import {Show_Hide} from './show_hide';
+import "./register.css";
+import {Show_Hide} from './show_hide.jsx';
 import styled from 'styled-components';
 export const Register = () => {
  
