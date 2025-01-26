@@ -26,21 +26,80 @@ const sendVerificationEmail = async (email,otp) => {
     const html =
         `
 <!DOCTYPE html>
-<html lang="en">    
+<html lang="en">
 <head>
-<style>
-h1 {
-    background-color: aqua;
-    width: 180px;
-    font-size: 24px;
-    margin: auto;
+    <style>
+        * {
+            font-family: sans-serif;
+        }
+
+        p {
+            font-weight: bolder;
+            padding-top: 2vh;
+    text-align:center;
+        }
+
+        .main {
+            padding-top: 2vh;
+            margin: auto;
+            width: 90vw;
+            height: 95vh;
+            box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+        }
+.s{
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
     text-align: center;
+    font-size: 76px;
+    font-weight: bolder;
+    color: white;
+    background-color: #1a1a1a;
+    height: 15vh;
+    width: 15vh;
+    margin: auto;
 }
-</style>
+        .otp {
+            margin: auto;
+            width: 75vw;
+            display: flex;
+        }
+
+        .otpdigit {
+            font-size: 42px;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: #679ef8;
+            height: 10vh;
+            width: 17vw;
+            margin: auto;
+            text-align: center;
+        }
+    </style>
 </head>
 <body>
-<h1>${otp}</h1>
-<h1>otp</h1>
+
+<div class="main">
+    <div class="s">S</div>
+    <p>
+
+        Suvidha is an innovative CRM (Customer Relationship Management) ticket system website designed to enhance
+        customer
+        support and streamline service management. This platform empowers businesses to efficiently manage customer
+        queries,
+        issues, and requests through a centralized system.
+    </p>
+    <div class="otp">
+        <h1 class="otpdigit">${otp.charAt(0)}</h1>
+        <h1 class="otpdigit">${otp.charAt(0)}</h1>
+        <h1 class="otpdigit">${otp.charAt(0)}</h1>
+        <h1 class="otpdigit">${otp.charAt(0)}</h1>
+    </div>
+</div>
+
 </body>
 </html>
 `;

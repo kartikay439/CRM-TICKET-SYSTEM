@@ -1,9 +1,35 @@
-import { React, useState } from 'react';
+import {useState } from 'react';
 import "./register.css";
 import {Show_Hide} from './show_hide.jsx';
 import styled from 'styled-components';
+import axios from "axios";
+import {useNavigate} from "react-router-dom";
 export const Register = () => {
- 
+  const[name, setName] = useState('');
+  const[email, setEmail] = useState('');
+  const[password, setPassword] = useState('');
+
+  async function submit(e){
+    const navigate = useNavigate();
+
+    e.preventDefault();
+
+    try {
+      const response = await axios.post("/api/v1/user/signup", {
+        email: email,
+        password: password,
+        name: name,
+      });
+
+      if (response.status === 200) {
+        navigate("/verify");
+      }
+    } catch (error) {
+      console.error("Error during signup:", error);
+      alert("Signup failed. Please try again.");
+    }
+  };
+
   const [passwordVisible, setPasswordVisible] = useState(false);
 
   return (
@@ -15,17 +41,20 @@ export const Register = () => {
         <a className="register">Register</a>
         
         <div className="inputBox1">
-          <input type="text" required="required"/>
+          <input type="text" onChange={(e)=>{
+            setEmail(e.target.value);
+          }} required="required"/>
           <span className="user">Email</span>
         </div>
 
         <div className="inputBox">
-          <input type="text" required="required"/>
+          <input onChange={(e)=>{setName(e.target.value)}} type="text" required="required"/>
           <span>Username</span>
         </div>
 
         <div className="inputBox password-box">
-          <input 
+          <input
+              onChange={(e) => setPassword(e.target.value)}
             type={passwordVisible ? "text" : "password"} 
             required="required"
           />
@@ -39,7 +68,7 @@ export const Register = () => {
           </button>
         </div>
 
-        <button className="enter">Enter</button>
+        <button className="enter" onClick={submit}>Enter</button>
         <div className="loglink">
           <p>Already have an account ?</p>
           <a href="/login">Login</a>
