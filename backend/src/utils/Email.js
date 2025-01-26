@@ -9,6 +9,7 @@ import ApiResponse from "./ApiResponse.js";
 //     Make sure the port and secure settings in your nodemailer configuration match.
 //
 
+
 const transporter = nodemailer.createTransport({
     host: process.env.EMAIL_HOST,
     port: process.env.EMAIL_PORT,
@@ -22,7 +23,7 @@ const transporter = nodemailer.createTransport({
 
 
 const sendVerificationEmail = async (email,otp) => {
-
+otp = otp.toString();
     const html =
         `
 <!DOCTYPE html>
@@ -42,7 +43,7 @@ const sendVerificationEmail = async (email,otp) => {
         .main {
             padding-top: 2vh;
             margin: auto;
-            width: 90vw;
+            width: 300px;
             height: 95vh;
             box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
         }
@@ -62,8 +63,12 @@ const sendVerificationEmail = async (email,otp) => {
 }
         .otp {
             margin: auto;
-            width: 75vw;
+                       width: 400px;
+
             display: flex;
+        }
+        h1{
+        text-align: center;
         }
 
         .otpdigit {
@@ -94,9 +99,9 @@ const sendVerificationEmail = async (email,otp) => {
     </p>
     <div class="otp">
         <h1 class="otpdigit">${otp.charAt(0)}</h1>
-        <h1 class="otpdigit">${otp.charAt(0)}</h1>
-        <h1 class="otpdigit">${otp.charAt(0)}</h1>
-        <h1 class="otpdigit">${otp.charAt(0)}</h1>
+        <h1 class="otpdigit">${otp.charAt(1)}</h1>
+        <h1 class="otpdigit">${otp.charAt(2)}</h1>
+        <h1 class="otpdigit">${otp.charAt(3)}</h1>
     </div>
 </div>
 

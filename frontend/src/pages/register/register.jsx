@@ -8,18 +8,19 @@ export const Register = () => {
   const[name, setName] = useState('');
   const[email, setEmail] = useState('');
   const[password, setPassword] = useState('');
+  const navigate =useNavigate();
 
-  async function submit(e){
-    const navigate = useNavigate();
+
+  const submit =async (e)=>{
 
     e.preventDefault();
-
     try {
       const response = await axios.post("/api/v1/user/signup", {
         email: email,
         password: password,
         name: name,
       });
+      console.log(response.status);
 
       if (response.status === 200) {
         navigate("/verify");
@@ -29,6 +30,21 @@ export const Register = () => {
       alert("Signup failed. Please try again.");
     }
   };
+
+  const hasAccess = async () => {
+    try {
+      const response = await axios.get("/api/v1/user/hasAccess")
+      console.log(response.status);
+      navigate("/");
+
+    }catch(error){
+      console.log("Error during signup:", error);
+      alert("good bye tata");
+      navigate("/login");
+    }
+
+
+  }
 
   const [passwordVisible, setPasswordVisible] = useState(false);
 
@@ -71,7 +87,7 @@ export const Register = () => {
         <button className="enter" onClick={submit}>Enter</button>
         <div className="loglink">
           <p>Already have an account ?</p>
-          <a href="/login">Login</a>
+          <a onClick={hasAccess}>Login</a>
         </div>
       </div>
     </div>
