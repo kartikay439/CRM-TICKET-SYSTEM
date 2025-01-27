@@ -1,4 +1,3 @@
-import React from 'react';
 import {Header_user_dashboard} from "./header.jsx";
 import {Footer_all} from "../home/footer_all.jsx";
 import {Ticket_table} from "./ticket_table.jsx";

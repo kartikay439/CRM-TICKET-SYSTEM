@@ -1,4 +1,5 @@
 import ClientModel from "../db/model/client.model.js";
+import {id} from "inversify";
 
 class ClientRepositoryImplementation {
     async createClient(client) {
@@ -17,8 +18,18 @@ class ClientRepositoryImplementation {
         return await ClientModel.findById(id)
     }
 
-    async updateClient(name, address, phoneNumber, company, order) {
-
+    async updateClient(id,name, address, phoneNumber, company) {
+        await ClientModel.updateOne(
+            { _id: id },
+            {
+                $set: {
+                    name: name,
+                    address: address,
+                    phoneNumber: phoneNumber,
+                    company: company,
+                }
+            }
+        )
     }
 
     async deleteClient(id) {

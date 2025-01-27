@@ -23,11 +23,11 @@ export const Login = () => {
                 }
             )
             if (response.status === 200) {
-                navigate("/");
+                navigate("/user-dashboard");
             }
         } catch (error) {
             alert("You are genius");
-            console.log(error);
+            // console.log(error);
         }
     }
 

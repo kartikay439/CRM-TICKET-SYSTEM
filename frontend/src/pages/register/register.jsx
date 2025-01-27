@@ -35,7 +35,7 @@ export const Register = () => {
     try {
       const response = await axios.get("/api/v1/user/hasAccess")
       console.log(response.status);
-      navigate("/");
+      navigate("/user-dashboard");
 
     }catch(error){
       console.log("Error during signup:", error);
