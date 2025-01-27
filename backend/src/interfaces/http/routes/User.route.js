@@ -1,5 +1,5 @@
 import {Router} from 'express';
-import {signup,verifyUser,signin} from "../controllers/User.controller.js";
+import {signup,verifyUser,signin,hasAccess,logout} from "../controllers/User.controller.js";
 
 
 function authRoutes(container){
@@ -17,7 +17,20 @@ function authRoutes(container){
     )
     
     router.route('/verify').post(
-       verifyUser
+        (req,res,next)=>
+       verifyUser(req,res,next,container)
+    )
+
+    router.route('/hasAccess').get(
+        (req,res,next)=>
+            hasAccess(req,res,next,container)
+    )
+
+    router.route('/signout').post(
+        (req,res,next)=>
+            logout(req,res,next,container)
+
+
     )
 
 

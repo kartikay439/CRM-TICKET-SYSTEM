@@ -8,6 +8,8 @@ import apiResponse from "../../../utils/ApiResponse.js";
 import ApiError from "../../../utils/ApiError.js";
 import jwt from "jsonwebtoken";
 import verify from "../../../application/useCases/user.usecase/VerifyUser.js";
+import UserModel from "../../../infrastructure/db/model/user.model.js";
+import AuthService from "../../../domain/services/auth.service.js";
 
 const repo = new userRepositoryImplementation()
 
@@ -15,6 +17,8 @@ const options = {
     httpOnly: true,
     secure: true,
 }
+
+
 
 const signup = asyncHandler(
     async (req, res, {registerUseCase, userRepository}) => {
@@ -28,13 +32,16 @@ const signup = asyncHandler(
             password,
         })
 
+        // const auth = new AuthService();
+
         console.log(user);
 
         if (!user) {
             throw new ApiError("registration unsuccessfully");
         }
 
-        const otp = 5439;
+
+        const otp = Math.ceil(1000+Math.random()*9000);
 
         const isSend = await sendVerificationEmail(email, otp)
         if (!isSend) {
@@ -96,6 +103,38 @@ const verifyUser = asyncHandler(
 //after successfull verification you will be ca login on
 
 
+
+const hasAccess = asyncHandler(
+    async (req, res) => {
+        const token = req.cookies?.accessToken;
+        console.log("token", token);
+        let decodedToken;
+        if(!token) {
+            throw new ApiError(400,"token not found.");
+        }
+        try {
+            decodedToken = jwt.verify(token, process.env.ACCESS_TOKEN_SECRET);
+
+        }catch(err){
+            console.log(err);
+        }
+        console.log(decodedToken);
+        if(!decodedToken) {
+            throw new ApiError(400,"token not found.");
+        }
+        const id = decodedToken.id;
+        const user = await UserModel.findById(id);
+        console.log(user);
+        if(!user) {
+            throw new ApiError(400,"user not found.");
+        }
+        res.status(200).json(
+            new ApiResponse(200,user,"user found successfully and have full access to the content")
+          );
+    }
+)
+
+
 const signin= asyncHandler(
     async (req, res) => {
         console.log(req.body);
@@ -114,8 +153,19 @@ const signin= asyncHandler(
         res.status(200)
             .cookie("accessToken", accessToken, options)
             .cookie("refreshToken", refreshToken, options)
+            .clearCookie("token")
             .json(new ApiResponse(200, "user login successfully")
         )
     }
 )
-export {signin,signup, verifyUser}
+
+const logout = asyncHandler(
+    async (req, res) => {
+        res.status(200)
+            .clearCookie("accessToken")
+            .clearCookie("refreshToken")
+            .json(new ApiResponse(200, "user logout successfully"));
+    }
+)
+
+export {hasAccess,signin,signup,verifyUser,logout}

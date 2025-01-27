@@ -9,6 +9,7 @@ async function loginUser(userRepository,email,password) {
     const user = await userRepository.findByEmail(email);
 
     if(!user){
+        console.log("user not found");
         throw new ApiError("User does not registered");
     }
 
