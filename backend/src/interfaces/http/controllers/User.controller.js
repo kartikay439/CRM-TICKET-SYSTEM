@@ -153,8 +153,19 @@ const signin= asyncHandler(
         res.status(200)
             .cookie("accessToken", accessToken, options)
             .cookie("refreshToken", refreshToken, options)
+            .clearCookie("token")
             .json(new ApiResponse(200, "user login successfully")
         )
     }
 )
-export {hasAccess,signin,signup,verifyUser}
+
+const logout = asyncHandler(
+    async (req, res) => {
+        res.status(200)
+            .clearCookie("accessToken")
+            .clearCookie("refreshToken")
+            .json(new ApiResponse(200, "user logout successfully"));
+    }
+)
+
+export {hasAccess,signin,signup,verifyUser,logout}
