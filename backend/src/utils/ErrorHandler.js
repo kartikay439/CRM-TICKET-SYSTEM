@@ -3,7 +3,7 @@ import ApiResponse from "./ApiResponse.js";
 
 const errorHandler = (err,req,res,next)=>{
     if(err instanceof ApiError){
-        return res.status(err.status).json(
+        return res.status(200).json(
             new ApiResponse(
                 err.statusCode,
                 err.message,

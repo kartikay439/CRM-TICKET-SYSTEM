@@ -13,6 +13,8 @@ import container from "../infrastructure/di/container.js";
 import cookieParser from "cookie-parser";
 import errorHandler from "../utils/ErrorHandler.js";
 app.use("/api/v1/user/", authRoutes(container))
+import ticketsRoutes from "../interfaces/http/routes/Ticket.route.js"
+app.use("/api/v1/tickets", ticketsRoutes);
 
 
 //custom error handler to serve error in our way

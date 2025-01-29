@@ -126,7 +126,7 @@ const hasAccess = asyncHandler(async (req, res, next) => {
     }
 
     if (!decodedToken) {
-        throw new ApiError(400, "Token verification failed.");
+        throw new ApiError(401, "Token verification failed.");
     }
 
     const id = decodedToken.id;

@@ -1,4 +1,4 @@
-class TokenRepository {
+class TicketRepository {
     async createToken() {
         throw new Error("Method not implemented.");
     }
@@ -18,4 +18,4 @@ class TokenRepository {
         throw new Error("Method not implemented.");
     }
 }
-export default TokenRepository;
+export default TicketRepository;

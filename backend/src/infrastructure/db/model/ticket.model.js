@@ -2,11 +2,11 @@ import  mongoose ,{Schema} from "mongoose";
 
 const newTicketSchema = new Schema(
   {
-    id: {
-      type: Schema.Types.Decimal128, 
-      required: true,
-      unique: true,
-    },
+    // id: {
+    //   type: Schema.Types.Decimal128,
+    //   required: true,
+    //   unique: true,
+    // },
     subject: {
       type: String, 
       required: [true, 'Subject is required'],
@@ -24,21 +24,21 @@ const newTicketSchema = new Schema(
       default: Date.now,
     },
     user_id: {
-      type: Schema.Types.Decimal128, 
+      type: String,
       required: true,
     },
     assigned_admin_id: {
-      type: Schema.Types.Decimal128, 
+      type: String ,
       required: true,
     },
     purchase_id: {
-      type: Schema.Types.Decimal128, 
+      type: String,
       required: true,
     },
   },
  
 );
 
-const Ticket = mongoose.model('Ticket', newTicketSchema);
+export const Ticket = mongoose.model('Ticket', newTicketSchema);
 
-module.exports = Ticket;
+
