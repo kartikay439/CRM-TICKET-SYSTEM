@@ -6,11 +6,11 @@ const newClientSchema = new Schema({
     required: true,
     unique: true,
   },
-  admin_id: {
+  adminId: {
     type: Schema.Types.Mixed,
     required: true,
   },
-  Name: {
+  name: {
     type: String,
     required: true,
     trim: true,
@@ -20,7 +20,7 @@ const newClientSchema = new Schema({
     required: true,
     trim: true,
   },
-  phone_number: {
+  phoneNumber: {
     type: Number,
     required: true,
    
@@ -34,7 +34,7 @@ const newClientSchema = new Schema({
     type: String,
     required: false,
   },
-  order_id: {
+  orderId: {
     type: Schema.Types.Mixed,
     required: false,
   },

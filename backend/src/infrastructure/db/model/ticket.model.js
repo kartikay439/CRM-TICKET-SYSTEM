@@ -1,5 +1,5 @@
 import  mongoose ,{Schema} from "mongoose";
-
+imp
 const newTicketSchema = new Schema(
   {
     id: {
@@ -19,19 +19,19 @@ const newTicketSchema = new Schema(
       default: 'open',
       required: true,
     },
-    last_updated: {
+    lastUpdated: {
       type: Date, 
       default: Date.now,
     },
-    user_id: {
+    userId: {
       type: Schema.Types.Decimal128, 
       required: true,
     },
-    assigned_admin_id: {
+    assignedAdminId: {
       type: Schema.Types.Decimal128, 
       required: true,
     },
-    purchase_id: {
+    purchaseId: {
       type: Schema.Types.Decimal128, 
       required: true,
     },

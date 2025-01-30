@@ -2,15 +2,15 @@ import mongoose,{Schema} from "mongoose";
 import OrderDetails from "../../../domain/entities/OrderDetails.js";
 
 const OrderDetailsSchema = new Schema({
-    order_id:{
+    orderId:{
         type:Schema.Types.ObjectId,
         required:true,
     },
-    order_data:{
+    orderDate:{
         type:Date,
         required:true,
     },
-    purchase_id:{
+    purchaseId:{
         type:Schema.Types.ObjectId,
         required:true,
     },
