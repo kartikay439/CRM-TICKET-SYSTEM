@@ -15,6 +15,14 @@ class TicketRepositoryImplementation extends TicketRepository {
         return tiket;
     }
     createTicket = async (ticket) => {
+        const t = Ticket.find(
+            ticket.last_updated_on
+        )
+        if (t) {
+            throw ApiError(400,"no ticket can have same last update time at current scenario max 10 users" +
+                "in future this will be handled")
+        }
+
         const ticketDb = await Ticket.create(
             {
                 subject: ticket.subject,
