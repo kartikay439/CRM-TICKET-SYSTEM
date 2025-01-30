@@ -1,15 +1,23 @@
-import { useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import {useState} from 'react';
+import {useNavigate} from 'react-router-dom';
 import logo from '../assets/img/logo.png';
 import axios from "axios";
+import "./ticket_table.css"
 
-export const Header_user_dashboard = () => {
+// eslint-disable-next-line react/prop-types
+export const Header_user_dashboard = ({dashboardView, profileView, feedbackForm, ticketForm}) => {
     const [isOpen, setIsOpen] = useState(false);
 
     const handleToggle = () => {
         setIsOpen(!isOpen);
     };
     const navigate = useNavigate();
+    const setAllFalse = () => {
+        dashboardView(false);
+        profileView(false);
+        feedbackForm(false);
+        ticketForm(false);
+    }
 
     const signout = async (e) => {
         e.preventDefault();
@@ -28,7 +36,7 @@ export const Header_user_dashboard = () => {
             <div className="nav-container">
                 <div className="brand">
                     <a href="#home">
-                        <img src={logo} alt="logo" className="logo" />
+                        <img src={logo} alt="logo" className="logo"/>
                     </a>
                 </div>
                 <button
@@ -38,13 +46,42 @@ export const Header_user_dashboard = () => {
                 >
                     &#9776;
                 </button>
-                <div className={`nav-links ${isOpen ? 'active' : ''}`}>
-                    <Link to="/" id="cap">Home</Link>
-                    <Link to="/user-dashboard" id="cap">Dashboard</Link>
-                    <Link to="/add_new_ticket" id="cap">Add New Ticket</Link>
-                    <Link to="/profile" id="cap">Profile</Link>
-                    <button onClick={signout} id="cap" className="logout-btn">Logout</button> {/* Replaced with button */}
-                    <Link to="/feedback" id="cap">Feedback</Link>
+                <div className="navItem">
+                    <button className="nav-item" onClick={
+                        () => {
+                            setAllFalse();
+                        }}>Home
+                    </button>
+                    <button className="nav-item" onClick={
+                        () => {
+                            setAllFalse();
+                            dashboardView(true)
+                        }}
+
+
+                    >Dashboard
+                    </button>
+                    <button className="nav-item"
+                            onClick={
+                                () => {
+                                    setAllFalse();
+                                    ticketForm(true)
+                                }}
+
+                    >Add New Ticket
+                    </button>
+                    <button className="nav-item" onClick={
+                        () => {
+                            setAllFalse();
+                            profileView(true)
+                        }}>Profile
+                    </button>
+                    <button className="nav-item" onClick={signout}>Logout</button>
+                    <button className="nav-item" onClick={
+                        () => {
+                            setAllFalse();
+                            feedbackForm(true)
+                        }}>Feedback</button>
                 </div>
             </div>
         </nav>
