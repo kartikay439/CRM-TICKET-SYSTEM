@@ -3,8 +3,8 @@ import {createTicket} from "../controllers/Ticket.controller.js";
 
 const router = Router();
 router.post('/createTicket',
-    (req, res) => {
-        createTicket(req, res)
+    (req, res,next) => {
+        createTicket(req, res,next)
 
     }
 )
