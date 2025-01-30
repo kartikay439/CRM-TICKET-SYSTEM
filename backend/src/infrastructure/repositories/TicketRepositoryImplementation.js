@@ -34,7 +34,7 @@ class TicketRepositoryImplementation extends TicketRepository {
             }
         )
         if (!ticketDb) {
-            throw ApiError("Unable to create ticket", ticket)
+            throw new ApiError("Unable to create ticket", ticket)
         }
         return ticketDb;
     }
