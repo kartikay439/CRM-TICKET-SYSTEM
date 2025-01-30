@@ -19,7 +19,7 @@ class TicketRepositoryImplementation extends TicketRepository {
             ticket.last_updated_on
         )
         if (t) {
-            throw ApiError(400,"no ticket can have same last update time at current scenario max 10 users" +
+            throw new ApiError(400,"no ticket can have same last update time at current scenario max 10 users" +
                 "in future this will be handled")
         }
 
