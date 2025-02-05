@@ -4,10 +4,10 @@ import User from "../../../domain/entities/User.js"
 
 async function registerUser(userRepository,userData)
 {
-    // const existingUser = await userRepository.findByEmail(userData.email);
-    // if(existingUser){
-    //     throw new Error("User already exists")
-    // }
+    const existingUser = await userRepository.findByEmail(userData.email);
+    if(existingUser){
+        throw new ApiError(400,"User already exists")
+    }
 
     //Password is encrypted
     const hashedPassword = await bcrypt.hash(userData.password, 10)

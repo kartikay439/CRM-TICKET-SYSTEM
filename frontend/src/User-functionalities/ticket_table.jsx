@@ -1,10 +1,18 @@
 import React, { useState } from "react";
 import user_issue from "../assets/user_table.js";
 import "./ticket_table.css";
+import axios from "axios";
 
 export const Ticket_table = () => {
   const [showModal, setShowModal] = useState(false);
   const [selectedIssue, setSelectedIssue] = useState(null);
+
+  let userIsuue;
+  const fetchTickets = async () => {
+    const response = await axios.get("/api/tickets");
+
+  }
+
 
   const handleDeleteClick = (issue) => {
     setSelectedIssue(issue);

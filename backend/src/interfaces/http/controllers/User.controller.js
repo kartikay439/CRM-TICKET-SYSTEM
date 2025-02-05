@@ -104,35 +104,49 @@ const verifyUser = asyncHandler(
 
 
 
-const hasAccess = asyncHandler(
-    async (req, res) => {
-        const token = req.cookies?.accessToken;
-        console.log("token", token);
-        let decodedToken;
-        if(!token) {
-            throw new ApiError(400,"token not found.");
-        }
-        try {
-            decodedToken = jwt.verify(token, process.env.ACCESS_TOKEN_SECRET);
 
-        }catch(err){
-            console.log(err);
-        }
-        console.log(decodedToken);
-        if(!decodedToken) {
-            throw new ApiError(400,"token not found.");
-        }
-        const id = decodedToken.id;
-        const user = await UserModel.findById(id);
-        console.log(user);
-        if(!user) {
-            throw new ApiError(400,"user not found.");
-        }
-        res.status(200).json(
-            new ApiResponse(200,user,"user found successfully and have full access to the content")
-          );
+const hasAccess = asyncHandler(async (req, res, next) => {
+    const token = req.cookies?.accessToken;
+
+
+    if (!token) {
+        // throw new ApiError(400, "Token not found.");
+        return res.status(200).json(
+            new ApiError(401, "No token provided")
+        )
     }
-)
+    console.log("Token received:", token);
+
+    let decodedToken;
+    try {
+        decodedToken = jwt.verify(token, process.env.ACCESS_TOKEN_SECRET);
+    } catch (err) {
+        console.error("JWT verification failed:", err);
+        throw new ApiError(401, "Invalid or expired authentication token.");
+    }
+
+    if (!decodedToken) {
+        throw new ApiError(401, "Token verification failed.");
+    }
+
+    const id = decodedToken.id;
+    const user = await UserModel.findById(id);
+
+    if (!user) {
+        console.error("User not found for ID:", id);
+        throw new ApiError(404, "User not found.");
+    }
+
+    console.log("User found:", user);
+
+    // Respond with success
+    res.status(200).json(
+        new ApiResponse(200, user, "User found successfully and has full access.")
+    );
+});
+
+export default hasAccess;
+
 
 
 const signin= asyncHandler(

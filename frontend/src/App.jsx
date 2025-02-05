@@ -5,7 +5,7 @@ import { Login } from './pages/login/login.jsx';
 import {Forgot_Password} from './pages/forgot_password/forgot_password.jsx';
 import { Reset_Password } from './pages/reset_password/reset_password.jsx';
 import {User_dashboard} from './User-functionalities/User-dashboard.jsx';
-import {Add_new_ticket} from './User-functionalities/add_new_ticket/Add_new_ticket.jsx';
+import {Add_new_ticket} from './User-functionalities/Add_new_ticket.jsx';
 import './App.css';
 import {Verify} from "./pages/verify/verify.jsx";
 

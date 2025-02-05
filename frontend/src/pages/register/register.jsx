@@ -3,6 +3,8 @@ import "./register.css";
 import {Show_Hide} from './show_hide.jsx';
 import styled from 'styled-components';
 import axios from "axios";
+import {Header} from "../../home/header.jsx";
+
 import {useNavigate} from "react-router-dom";
 export const Register = () => {
   const[name, setName] = useState('');
@@ -35,7 +37,11 @@ export const Register = () => {
     try {
       const response = await axios.get("/api/v1/user/hasAccess")
       console.log(response.status);
-      navigate("/");
+      if(response.data.statusCode === 200){
+        navigate("/user-dashboard");
+      }else{
+        navigate("/login");
+      }
 
     }catch(error){
       console.log("Error during signup:", error);
@@ -51,6 +57,7 @@ export const Register = () => {
   return (
     <>
  <StyledWrapper>
+   <Header />
       <div className="container" >
   <div className="comp">
       <div className="card">
@@ -102,12 +109,15 @@ const StyledWrapper = styled.div`
   .container {
     width: 100%;
     height: 100%;
-     background: repeating-radial-gradient(circle, rgb(26, 133, 233), rgb(104, 183, 230) 1em, white 1em, white 2em);
+     //background: repeating-radial-gradient(circle, rgb(26, 133, 233), rgb(104, 183, 230) 1em, white 1em, white 2em);
       background-size: 20px 20px;
   }
     
   
   .card {
+    box-shadow: 0 4px 60px #679ef8;
+    background-color: #679ef8;
+    
     display: flex;
     justify-content: center;
     align-items: center;
@@ -115,9 +125,9 @@ const StyledWrapper = styled.div`
     gap: 35px;
     width: 350px;
     min-height: 450px;
-    background: rgba(255, 255, 255, 0); /* Semi-transparent background */
+    //background: rgba(255, 255, 255, 0); /* Semi-transparent background */
     border-radius: 12px;
-    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+    //box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1); /* Subtle shadow */
     backdrop-filter: blur(10px); /* Frosted glass effect */
     -webkit-backdrop-filter: blur(10px); /* Safari support */
     border: 1px solid rgba(255, 255, 255, 0.3); /* Border for glass effect */

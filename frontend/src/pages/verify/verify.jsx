@@ -1,12 +1,14 @@
 import "./verify.css";
-import { useState } from "react";
+import {useState} from "react";
 import axios from "axios";
+import {useNavigate} from "react-router-dom";
 // import { useNavigate } from "react-router-dom";
 
 export const Verify = () => {
     // const navigate = useNavigate();
     const [success, setSuccess] = useState(false);
     const [otp, setOtp] = useState("");
+    const navigate = useNavigate();
 
     // Handle OTP verification on form submit
     const verify = async (e) => {
@@ -19,13 +21,14 @@ export const Verify = () => {
         }
 
         try {
-            const response = await axios.post("/api/v1/user/verify", { otp });
+            const response = await axios.post("/api/v1/user/verify", {otp});
 
             console.log(response.data);
             // Log the response for debugging
 
             if (response.status === 200) {
                 setSuccess(true);
+                navigate("/login");
                 // navigate("/success");  // Navigate to success page on success
             } else {
                 alert("Invalid OTP. Please try again.");
@@ -51,7 +54,7 @@ export const Verify = () => {
                 </div>
 
                 <button type="submit" onClick={verify}>Verify OTP</button>
-            </form>):<h1>Success</h1>}
+            </form>) : <h1>Success</h1>}
 
 
         </>
