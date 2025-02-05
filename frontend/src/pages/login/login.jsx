@@ -9,13 +9,15 @@ export const Login = () => {
     const [showPassword, setShowPassword] = useState(false);
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
-    const [error, setError] = useState("");
+    const [error, setError] = useState("no");
     const [failed, setFailed] = useState(false);
     const navigate = useNavigate();
 
     useEffect(() => {
         if (failed) {
-            const timer = setTimeout(() => setFailed(false), 5000);
+            const timer = setTimeout(() =>
+                setFailed(false),
+                5000);
             return () => clearTimeout(timer);
         }
     }, [failed]);
@@ -23,10 +25,12 @@ export const Login = () => {
     const validateForm = () => {
         if (!email.includes("@")) {
             setError("Please enter a valid email address.");
+            setFailed(true);
             return false;
         }
         if (password.length < 6) {
             setError("Password should be at least 6 characters long.");
+            setFailed(true);
             return false;
         }
         setError("");
@@ -35,10 +39,21 @@ export const Login = () => {
 
     const loginHandler = async (e) => {
         e.preventDefault();
-        if (!validateForm()) return;
+        if (!validateForm()) {
+console.log("not valid");
+            return;
+
+        }
+
 
         try {
-            const response = await axios.post("/api/v1/user/signin", {email, password});
+            console.log("REQUEST SEND");
+
+            const response = await axios.post("/api/v1/user/signin",
+                {email, password}
+            );
+            console.log(response.data)
+
             if (response.status === 200) {
 
                 if (response.data.statusCode === 200) {
@@ -46,7 +61,7 @@ export const Login = () => {
                     setPassword("");
                     navigate("/user-dashboard");
                 }
-                if (response.data.statusCode === 400) {
+                else {
                     setFailed(true);
                     setError(response.data.data);
                 }
@@ -104,7 +119,9 @@ export const Login = () => {
                         <a href="/register">Register</a>
                     </p>
                 </form>
-                {failed?<ErrorComponent err={error}/>:<></>}
+
+                {/*<ErrorComponent message="hello" />*/}
+                {failed ? <ErrorComponent message={error}/> : <></>}
             </div>
         </StyledWrapper>
     );

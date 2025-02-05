@@ -1,9 +1,9 @@
 import "./error.css"
-export const ErrorComponent = ({err}) => {
+export const ErrorComponent = (props) => {
     return (
         <>
             <div className="lError">
-                <p className="error-box">{err}</p>
+                <p className="error-box">{props.message}</p>
 
             </div>
         </>
