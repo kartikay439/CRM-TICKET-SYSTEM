@@ -5,9 +5,9 @@ import styled from 'styled-components';
 import {Show_Hide} from './show_hide.jsx';
 import './ticket_table.css';
 import {useState} from "react";
-import {Profile} from "./profile.jsx";
-import {Feedback} from "./feedback.jsx";
-import {TicketForm} from "./ticketForm.jsx";
+import {Profile} from "../User-functionalities/profile/profile.jsx";
+import {Feedback} from "../User-functionalities/feedback/feedback.jsx";
+import {Add_new_ticket } from "../User-functionalities/add_new_ticket/Add_new_ticket.jsx";
 
 export const User_dashboard = () => {
     const [dashboardView, setDashboardView] = useState(true);
@@ -56,7 +56,7 @@ export const User_dashboard = () => {
                         </div>
                     </div>
                     {dashboardView ? <Ticket_table/> : null}
-                    {ticketForm ? <TicketForm/> : null}
+                    {ticketForm ? <Add_new_ticket /> : null}
                     {profileView ? <Profile/> : null}
                     {feedbackForm? <Feedback/> : null}
                     <Footer_all/>
