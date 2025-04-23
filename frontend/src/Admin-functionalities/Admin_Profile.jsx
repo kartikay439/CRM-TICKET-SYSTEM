@@ -4,8 +4,8 @@ import { AdminFooter } from "./Admin_footer.jsx";
 import { Show_Hide } from "./show_hide.jsx";
 import user_image from "../assets/img/user_details.png";
 import user_delete from "../assets/img/user_delete.png";
-import user_protected from "../assets/img/password_protection.jpeg";
-
+// import user_protected from "../assets/img/password_protection.jpeg";
+import { DotLottieReact } from '@lottiefiles/dotlottie-react';
 
 export const AdminProfile = () => {
 const [name, setName] = useState("A.K.S THE GREAT");
@@ -61,7 +61,15 @@ const [name, setName] = useState("A.K.S THE GREAT");
       </div>
       </div>
       <div className="pro_img_container">
-      <img src={user_protected} id="user_protected" alt="user_protected" />
+      {/* <img src={user_protected} id="user_protected" alt="user_protected" /> */}
+      <DotLottieReact
+            src="https://lottie.host/1d0d9219-887b-484b-99d7-6de194ae26dc/DMMxyjigsj.lottie"
+            loop
+            autoplay
+            id="user_protected" 
+            alt="user_protected_animation"
+            style={{ width: '300px', height: '300px' }}
+          />
       <div className="profile-password">
         <form action="" onSubmit={handleSubmitPassword}>
           <h2>Update Password</h2>
