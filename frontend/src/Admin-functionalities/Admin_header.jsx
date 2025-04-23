@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import './Admin_dashboard.css';
+import '../User-functionalities/logout.css'
 import logo from '../assets/img/logo.png';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap/dist/js/bootstrap.bundle.min.js';
@@ -14,7 +15,7 @@ export const AdminHeader = () => {
    
      const handleLogout = () => {
        console.log("User logged out");
-       window.location.href = "/login"; 
+       window.location.href = "/login/admin"; 
      };
    
      return (
