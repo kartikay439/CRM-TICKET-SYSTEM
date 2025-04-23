@@ -2,7 +2,6 @@ import {Header_user_dashboard} from "./header.jsx";
 import {Footer_all} from "../home/footer_all.jsx";
 import {Ticket_table} from "./ticket_table.jsx";
 import styled from 'styled-components';
-import {Show_Hide} from './show_hide.jsx';
 import './ticket_table.css';
 import {useState} from "react";
 import {Profile} from "../User-functionalities/profile/profile.jsx";
@@ -60,7 +59,6 @@ export const User_dashboard = () => {
                     {profileView ? <Profile/> : null}
                     {feedbackForm? <Feedback/> : null}
                     <Footer_all/>
-                    <Show_Hide/>
                 </div>
             </StyledWrapper>
         </>

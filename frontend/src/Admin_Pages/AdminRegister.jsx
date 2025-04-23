@@ -36,7 +36,7 @@ export const AdminRegister = () => {
             <input  type={passwordVisible ? "text" : "password"} placeholder="Password" className="input-field" />
             <button 
             type="button" 
-            className="password-toggle hov"
+            className="password-toggle hover-hide"
             onClick={() => setPasswordVisible(!passwordVisible)}
           >
             {passwordVisible ? 'Hide' : 'Show'}
