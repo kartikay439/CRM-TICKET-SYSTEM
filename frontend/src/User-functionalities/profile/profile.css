@@ -4,7 +4,7 @@
     place-items: start end;
     height: 175vh;
     width:97vw;
-   margin-top:-20vh;
+   margin-top:20vh;
    margin-right:1.5vw;
  }
  
@@ -23,14 +23,10 @@
  margin-left:5vw;
  margin-top:8vh;
 }
-#user_protected{
-    height:40vh;
-    width:25vw;
-    margin-left:7vw;
-    margin-top:8vh;
-    border-radius:50%;
-    border:2px solid green;
-}
+#user_protected {
+    margin-left: 10vw;
+    margin-top: 8vh;
+  }
 .profile, .profile-password, .profile-delete {
     width: 50vw;
     border: 2px solid black;
