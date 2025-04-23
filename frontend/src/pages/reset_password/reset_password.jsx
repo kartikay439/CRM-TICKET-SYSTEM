@@ -78,15 +78,14 @@ const StyledCard = styled.div`
  max-width: 500px;
   width: 90%;
   text-align: center;
- background: rgba(255, 255, 255, 0); /* Semi-transparent background */
-    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1); /* Subtle shadow */
-    backdrop-filter: blur(10px); /* Frosted glass effect */
-    -webkit-backdrop-filter: blur(10px); /* Safari support */
-    border: 1px solid rgba(255, 255, 255, 0.3); /* Border for glass effect */
+ background: white; 
+ 
+    backdrop-filter: blur(10px); 
+    -webkit-backdrop-filter: blur(10px); 
+    border: 2px solid black;
   }
   .container {
-    background: repeating-radial-gradient(circle, rgb(26, 133, 233), rgb(104, 183, 230) 1em, white 1em, white 2em);
-    background-size: 20px 20px;
+    background: #679ef8;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -122,8 +121,8 @@ const StyledCard = styled.div`
       padding: 10px 15px;
       border: none;
       border-radius: 5px;
-      background-color:rgb(226, 222, 222);
-      color: #333;
+      background-color:white;
+      color: black;
       font-size: 16px;
       font-weight: 550;
       transition: 0.3s ease-in-out;

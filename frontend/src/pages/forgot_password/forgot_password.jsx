@@ -6,12 +6,10 @@ export const Forgot_Password = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    // Simulate form submission
     setSubmitted(true);
   };
 
   const handleResend = () => {
-    // Logic to resend the link
     alert('Reset password link resent!');
   };
 
@@ -54,8 +52,7 @@ const StyledWrapper = styled.div`
   .container {
     width: 100%;
     height: 100%;
-    background: repeating-radial-gradient(circle at 50%, rgb(26, 133, 233), rgb(104, 183, 230) 1em, white 1em, white 2em);
- background-size: 20px 20px;
+    background:#679ef8;
     @media (min-width: 270px) and (max-width: 400px) {
       height: 150vh;
       width: 150vw;
@@ -72,11 +69,10 @@ const StyledWrapper = styled.div`
     padding: 20px;
     border-radius: 16px;
     font-family: Arial, sans-serif;
-    background: rgba(255, 255, 255, 0.15); /* More transparency for the glass effect */
-    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.25); /* Stronger shadow for depth */
-    backdrop-filter: blur(12px); /* Increased blur for frost effect */
-    -webkit-backdrop-filter: blur(12px); /* Safari support */
-    border: 1px solid rgba(255, 255, 255, 0.2); /* Thin border for definition */
+    background: white; 
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px); 
+    border: 2px solid black;
   }
 
   .heading {
@@ -98,7 +94,7 @@ const StyledWrapper = styled.div`
     width: 100%;
     padding: 10px;
     margin-bottom: 10px;
-    border: 1px solid rgba(255, 255, 255, 0.5); /* Lighter border */
+    border: 1px solid black; 
     border-radius: 8px;
     background-color:white;
     color: black;
@@ -117,8 +113,8 @@ const StyledWrapper = styled.div`
     padding: 10px;
     border: none;
     border-radius: 8px;
-      background-color: #fff;
-     color: #679ef8;
+      background-color: black;
+     color: white;
     font-weight: bold;
     cursor: pointer;
     transition: all 0.3s ease; /* Smooth hover effect */
@@ -126,9 +122,9 @@ const StyledWrapper = styled.div`
   }
 
   .newsletter-form input[type='submit']:hover {
-    border:2px solid black;
-    background-color: #fff;
-     color: #679ef8; 
+   transform:scale(1.05);
+    background-color: black;
+     color: white; 
   }
 
   .resend-container {
