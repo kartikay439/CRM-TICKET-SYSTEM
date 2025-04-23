@@ -26,3 +26,71 @@
 .hlogo{
   height: 75px;
 }
+.admin-add-new-client{
+margin-top:5vh;
+}
+
+.client-form input,
+.client-form textarea,
+.client-form button {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid black;
+  margin-bottom: 10px;
+  border-radius: 4px;
+  font-size: 16px;
+  width:50vw;
+}
+
+.client-form button {
+  background-color: #000;
+  color: #fff;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.client-form button:hover {
+  background-color: #000;
+  color:white;
+  border:2px solid white;
+  transform: scale(0.97);
+  border-radius:15px;
+}
+.contain {
+  height: auto;
+  min-height: 120vh;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 10px;
+  box-sizing: border-box;
+}
+.form-container {
+    width: 100%;
+    max-width: 800px; 
+    padding: 20px;
+    background-color:rgb(250, 232, 144);
+    border-radius: 8px;
+    margin: 20px auto;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    border:2px solid black;
+  }
+
+  @media (max-width:400px){
+    .client-form input,
+    .client-form textarea,
+    .client-form button {
+      width:70vw;
+    }
+  }
+
+  
+  @media (max-width:800px){
+    .client-form input,
+    .client-form textarea,
+    .client-form button {
+      width:90vw;
+    }
+  }
