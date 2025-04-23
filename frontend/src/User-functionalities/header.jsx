@@ -42,14 +42,14 @@ export const Header_user_dashboard = ({dashboardView, profileView, feedbackForm,
                 <button
                     className="toggle-btn togbtn"
                     onClick={handleToggle}
-                    aria-label="Toggle navigation"
+                    aria-label="Toggle navigation" 
                 >
                     &#9776;
                 </button>
                 <div className="navItem">
-                    <button className="nav-item" onClick={
+                    <button className="nav-item" id="cap" onClick={
                         () => {
-                            setAllFalse();
+                            setAllFalse(); 
                         }}>Home
                     </button>
                     <button className="nav-item" onClick={
@@ -57,7 +57,7 @@ export const Header_user_dashboard = ({dashboardView, profileView, feedbackForm,
                             setAllFalse();
                             dashboardView(true)
                         }}
-
+                    id="cap"
 
                     >Dashboard
                     </button>
@@ -67,17 +67,17 @@ export const Header_user_dashboard = ({dashboardView, profileView, feedbackForm,
                                     setAllFalse();
                                     ticketForm(true)
                                 }}
-
-                    >Add New Ticket
+                    id="cap"
+                    >Add New Ticket 
                     </button>
-                    <button className="nav-item" onClick={
+                    <button className="nav-item" id="cap" onClick={
                         () => {
                             setAllFalse();
                             profileView(true)
                         }}>Profile
                     </button>
-                    <button className="nav-item" onClick={signout}>Logout</button>
-                    <button className="nav-item" onClick={
+                    <button className="nav-item" id="cap" onClick={signout}>Logout</button>
+                    <button className="nav-item" id="cap" onClick={
                         () => {
                             setAllFalse();
                             feedbackForm(true)

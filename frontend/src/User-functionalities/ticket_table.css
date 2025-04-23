@@ -1,10 +1,6 @@
 .navItem {
-    display: flex;
-    flex-direction: row;
-    gap: 0.5rem;
-    font-size: 12px;
-    font-weight: bold;
-    align-items: center;
+     display: flex;
+    align-items: center; 
 }
 
 .navItem button {
@@ -16,6 +12,7 @@
     font-weight: bold;
     transition: all 0.3s ease-in-out;
     cursor: pointer;
+    white-space: nowrap;
 }
 
 .navItem button:hover {
