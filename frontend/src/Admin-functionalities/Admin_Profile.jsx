@@ -10,7 +10,7 @@ import user_protected from "../assets/img/password_protection.jpeg";
 export const AdminProfile = () => {
 const [name, setName] = useState("A.K.S THE GREAT");
   const [email, setEmail] = useState("mitram.email75@gmail.com");
-  const [password, setpassword] = useState("S9n2k@sh58");
+  const [password, setpassword] = useState("123456789");
   const [isEmailChanged, setIsEmailChanged] = useState(false);
 
 

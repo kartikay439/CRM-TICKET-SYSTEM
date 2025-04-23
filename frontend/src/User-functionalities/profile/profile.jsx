@@ -12,7 +12,7 @@ import { DotLottieReact } from '@lottiefiles/dotlottie-react';
 export const Profile = () => {
   const [name, setName] = useState("A.K.S THE GREAT");
   const [email, setEmail] = useState("mr.aksthegreat03042004@gmail.com");
-  const [password, setpassword] = useState("S9n2k@sh58");
+  const [password, setpassword] = useState("123456789");
   const [isEmailChanged, setIsEmailChanged] = useState(false);
 
 
