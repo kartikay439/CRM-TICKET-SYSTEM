@@ -1,13 +1,13 @@
 import {asyncHandler} from "../../../utils/AsyncHandler.js";
 import ApiResponse from "../../../utils/ApiResponse.js";
-import registerUser from "../../../application/useCases/user.usecase/RegisterUser.js";
-import loginUser from "../../../application/useCases/user.usecase/LoginUser.js";
+import registerUser from "../../../domain/useCases/user.usecase/RegisterUser.js";
+import loginUser from "../../../domain/useCases/user.usecase/LoginUser.js";
 import userRepositoryImplementation from "../../../infrastructure/repositories/UserRepositoryImplementation.js";
 import {sendVerificationEmail} from "../../../utils/Email.js";
 import apiResponse from "../../../utils/ApiResponse.js";
 import ApiError from "../../../utils/ApiError.js";
 import jwt from "jsonwebtoken";
-import verify from "../../../application/useCases/user.usecase/VerifyUser.js";
+import verify from "../../../domain/useCases/user.usecase/VerifyUser.js";
 import UserModel from "../../../infrastructure/db/model/user.model.js";
 import AuthService from "../../../domain/services/auth.service.js";
 
@@ -19,11 +19,11 @@ const options = {
 }
 
 
-
 const signup = asyncHandler(
     async (req, res, {registerUseCase, userRepository}) => {
         //testing purpose
         const {email, name, password} = req.body;
+        console.log(name, email, password);
         // console.log(registerUseCase);
 
         const user = await registerUser(repo, {
@@ -41,7 +41,7 @@ const signup = asyncHandler(
         }
 
 
-        const otp = Math.ceil(1000+Math.random()*9000);
+        const otp = Math.ceil(1000 + Math.random() * 9000);
 
         const isSend = await sendVerificationEmail(email, otp)
         if (!isSend) {
@@ -103,13 +103,13 @@ const verifyUser = asyncHandler(
 //after successfull verification you will be ca login on
 
 
-
-
-const hasAccess = asyncHandler(async (req, res, next) => {
+const hasAccess = asyncHandler(async (req, res) => {
+    console.log("request ha saccess")
     const token = req.cookies?.accessToken;
 
 
     if (!token) {
+        console.log("no token")
         // throw new ApiError(400, "Token not found.");
         return res.status(200).json(
             new ApiError(401, "No token provided")
@@ -145,33 +145,33 @@ const hasAccess = asyncHandler(async (req, res, next) => {
     );
 });
 
-export default hasAccess;
 
+const signin = asyncHandler(async (req, res) => {
+    const {email, password} = req.body;
 
+    console.log("Login Request:", email, password);
 
-const signin= asyncHandler(
-    async (req, res) => {
-        console.log(req.body);
-        const email = req.body.email;
-        const password = req.body.password;
+    const {accessToken, refreshToken} = await loginUser(repo, email, password);
 
-
-        console.log(email, password);
-        const {accessToken, refreshToken} = await loginUser(repo, email, password)
-        console.log(accessToken);
-        if (!accessToken) {
-            throw new ApiError("unable to generate access token");
-        }
-
-
-        res.status(200)
-            .cookie("accessToken", accessToken, options)
-            .cookie("refreshToken", refreshToken, options)
-            .clearCookie("token")
-            .json(new ApiResponse(200, "user login successfully")
-        )
+    if (!accessToken || !refreshToken) {
+        throw new ApiError(401, "Unable to generate tokens");
     }
-)
+
+    const cookieOptions = {
+        httpOnly: true,
+        secure: process.env.NODE_ENV === "production",
+        sameSite: "Lax",
+        maxAge: 24 * 60 * 60 * 1000 // 1 day
+    };
+
+    return res
+        .status(200)
+        .cookie("accessToken", accessToken, cookieOptions)
+        .cookie("refreshToken", refreshToken, cookieOptions)
+        .clearCookie("token")
+        .json(new ApiResponse(200, "User logged in successfully"));
+});
+
 
 const logout = asyncHandler(
     async (req, res) => {
@@ -182,4 +182,4 @@ const logout = asyncHandler(
     }
 )
 
-export {hasAccess,signin,signup,verifyUser,logout}
+export {hasAccess, signin, signup, verifyUser, logout}

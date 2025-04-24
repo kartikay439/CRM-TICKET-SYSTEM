@@ -1,6 +1,6 @@
 import bcrypt from 'bcrypt';
 // import authService from "../../../domain/services/auth.service.js";
-import AuthService from "../../../domain/services/auth.service.js";
+import AuthService from "../../services/auth.service.js";
 import ApiError from "../../../utils/ApiError.js";
 
 const authService = new AuthService()
@@ -15,7 +15,7 @@ async function loginUser(userRepository,email,password) {
     }
 
     if(!user.isVerified){
-        throw ApiError(400,"User not verified");
+        throw new ApiError(400,"User not verified");
         //open otp page
     }
 

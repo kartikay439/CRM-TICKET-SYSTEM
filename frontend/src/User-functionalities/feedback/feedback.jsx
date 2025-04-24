@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Header_user_dashboard } from "../header";
 import { Footer_all } from "../../home/footer_all";
-import { Show_Hide } from "../show_hide.jsx";
+// import { Show_Hide } from "../show_hide.jsx";
 import{Rating} from "./rating.jsx";
 import "./rating.css";
 import trump from "../../assets/img/trump.png";

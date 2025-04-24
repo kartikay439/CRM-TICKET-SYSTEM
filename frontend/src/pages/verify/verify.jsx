@@ -10,7 +10,6 @@ export const Verify = () => {
     const [otp, setOtp] = useState("");
     const navigate = useNavigate();
 
-    // Handle OTP verification on form submit
     const verify = async (e) => {
         e.preventDefault();
 
@@ -21,21 +20,43 @@ export const Verify = () => {
         }
 
         try {
-            const response = await axios.post("/api/v1/user/verify", {otp});
+            const response = await axios.post("/api/v1/user/verify", { otp });
 
-            console.log(response.data);
-            // Log the response for debugging
-
+            // Handle success response
             if (response.status === 200) {
                 setSuccess(true);
+                console.log("success verify");
                 navigate("/login");
-                // navigate("/success");  // Navigate to success page on success
-            } else {
-                alert("Invalid OTP. Please try again.");
             }
         } catch (error) {
+            // Check if the error is an AxiosError
+            if (error.isAxiosError) {
+                // You can access the error response using error.response
+                const { response } = error;
+
+                if (response) {
+                    const { status } = response;
+                    // Handle based on status code from the server
+                    if (status === 400) {
+                        alert("Bad Request: Please check your OTP and try again.");
+                    } else if (status === 401) {
+                        alert("Invalid OTP. Please try again.");
+                    } else if (status === 404) {
+                        alert("User not found. Please register first.");
+                    } else {
+                        alert("An unexpected error occurred. Please try again.");
+                    }
+                } else {
+                    // If no response from server, possibly network issue
+                    alert("Network error: Please check your connection.");
+                }
+            } else {
+                // Handle non-Axios errors (e.g., programming errors)
+                alert("An error occurred. Please try again.");
+            }
+
+            // Log the full error for debugging
             console.error("Error occurred during OTP verification:", error);
-            alert("An error occurred while verifying the OTP. Please try again.");
         }
     };
 

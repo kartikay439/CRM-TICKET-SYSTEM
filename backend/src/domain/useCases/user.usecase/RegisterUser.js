@@ -1,5 +1,6 @@
 import bcrypt from "bcrypt"
-import User from "../../../domain/entities/User.js"
+import User from "../../entities/User.js"
+import ApiError from "../../../utils/ApiError.js"
 // import {use} from "bcrypt/promises.js";
 
 async function registerUser(userRepository,userData)

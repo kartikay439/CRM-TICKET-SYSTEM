@@ -5,7 +5,7 @@ import { Show_Hide } from "../show_hide.jsx";
 import './profile.css';
 import user_image from "../../assets/img/user_details.png";
 import user_delete from "../../assets/img/user_delete.png";
-import user_protected from "../../assets/img/password_protection.jpeg";
+// import user_protected from "../../assets/img/password_protection.jpeg";
 import { DotLottieReact } from '@lottiefiles/dotlottie-react';
 
 

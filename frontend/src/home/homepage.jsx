@@ -21,13 +21,17 @@ export const Homepage = () => {
             navigate("/user-dashboard");
             else if(response.data.statusCode===401)
                 setShow(true);
-            else
+            else {
                 alert("not good error handling");
+                navigate("/login");
+
+            }
         } catch (error) {
             // Log errors only in development
             // if (process.env.NODE_ENV === "development") {
             //     console.log("Error during access check:", error);
             // }
+            navigate("/login");
 
             setShow(true); // Show error to the user
 

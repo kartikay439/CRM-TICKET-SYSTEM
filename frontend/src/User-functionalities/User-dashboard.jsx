@@ -3,7 +3,7 @@ import {Footer_all} from "../home/footer_all.jsx";
 import {Ticket_table} from "./ticket_table.jsx";
 import styled from 'styled-components';
 import {Show_Hide} from './show_hide.jsx';
-import './ticket_table.css';
+// import './ticket_table.css';
 import {useState} from "react";
 import {Profile} from "../User-functionalities/profile/profile.jsx";
 import {Feedback} from "../User-functionalities/feedback/feedback.jsx";

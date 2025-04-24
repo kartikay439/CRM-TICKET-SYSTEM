@@ -15,6 +15,9 @@ async function verify(token,otp,repo){
     const decodedOtp = decodedToken.otp.toString();
     const otpByUserForm = otp.toString();
 
+    console.log(otpByUserForm);
+    console.log(decodedOtp);
+
     if(decodedOtp === otpByUserForm){
         user.isVerified = true;
         await user.save({validateBeforeSave: true})

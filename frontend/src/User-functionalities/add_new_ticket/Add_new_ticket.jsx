@@ -9,6 +9,9 @@ export const Add_new_ticket = () => {
   const [userIssue, setUserIssue] = useState(user_issue_data); // Initializing with imported data
   const [productImage, setProductImage] = useState(null);
   const [invoice, setInvoice] = useState(null);
+
+  "/api/v1/tickets/createTicket"
+
   const [newTicket, setNewTicket] = useState({
     issue: "",
     description: "",
@@ -43,14 +46,15 @@ export const Add_new_ticket = () => {
     if (newTicket.issue && newTicket.description) {
       try {
         const formData = new FormData();
-        formData.append("issue", newTicket.issue);
+        formData.append("subject", newTicket.issue);
         formData.append("description", newTicket.description);
-        formData.append("invoice", invoice);
-        formData.append("product_image", productImage);
+        formData.append("uploadInvoice", invoice);
+        formData.append("productImage", productImage);
 
-        const response = await fetch("http://localhost:5000/api/tickets", {
+        const response = await fetch("http://localhost:8000/api/v1/tickets/createTicket", {
           method: "POST",
           body: formData,
+          credentials: "include"
         });
 
         if (response.ok) {

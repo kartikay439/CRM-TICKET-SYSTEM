@@ -2,33 +2,33 @@ import {Router} from 'express';
 import {signup,verifyUser,signin,hasAccess,logout} from "../controllers/User.controller.js";
 
 
-function authRoutes(container){
+function authRoutes(){
     const router = Router();
-
+// const  container = null
 
     router.route('/signup').post(
-        (req,res,next)=>
-            signup(req,res,next,container)
+        (req,res)=>
+            signup(req,res)
     )
 
     router.route('/signin').post(
-        (req,res,next)=>
-            signin(req,res,next,container)
+        (req,res)=>
+            signin(req,res)
     )
     
     router.route('/verify').post(
-        (req,res,next)=>
-       verifyUser(req,res,next,container)
+        (req,res)=>
+       verifyUser(req,res)
     )
 
     router.route('/hasAccess').get(
-        (req,res,next)=>
-            hasAccess(req,res,next,container)
+        (req,res)=>
+            hasAccess(req,res)
     )
 
     router.route('/signout').post(
-        (req,res,next)=>
-            logout(req,res,next,container)
+        (req,res)=>
+            logout(req,res)
 
 
     )
