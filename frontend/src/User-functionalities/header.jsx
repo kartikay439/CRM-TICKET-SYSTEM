@@ -70,7 +70,7 @@ export const Header_user_dashboard = ({dashboardView, profileView, feedbackForm,
                     id="cap"
                     >Add New Ticket 
                     </button>
-                    <button className="nav-item" id="cap" onClick={
+                    <button className="nav-item left-side" id="cap" onClick={
                         () => {
                             setAllFalse();
                             profileView(true)

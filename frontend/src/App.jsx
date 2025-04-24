@@ -14,7 +14,7 @@ import {Feedback} from './User-functionalities/feedback/feedback';
 import {AdminRegister} from './Admin_Pages/AdminRegister';
 import {AdminLogin} from './Admin_Pages/AdminLogin';
 import {AdminDashboard} from './Admin-functionalities/Admin_dashboard';
-import {AdminProfile} from './Admin-functionalities/Admin_Profile';
+import {AdminProfile} from './Admin-functionalities/Admin-profile/Admin_Profile';
 import {Add_new_client} from './Admin-functionalities/add_new_client/Add_new_client';
 function App() {
   return (

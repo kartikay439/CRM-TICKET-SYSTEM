@@ -66,9 +66,16 @@ export const Ticket_table = () => {
               </td>
               <td>
                 {issue.status !== "resolved" && (
-                  <a href="/chat" className="action chat">
-                    CHAT
-                  </a>
+                  <a
+                  href={`https://mail.google.com/mail/?view=cm&fs=1&to=mitram.email75@gmail.com&su=${encodeURIComponent(
+                    issue.issue.toUpperCase()
+                  )}&body=${encodeURIComponent("Write us Your Problem 😊")}`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="action chat"
+                >
+                  CHAT
+                </a>
                 )}
                 <span
                   onClick={() => handleDeleteClick(issue)}
