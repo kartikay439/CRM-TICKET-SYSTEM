@@ -78,8 +78,8 @@ export const Add_new_ticket = () => {
   };
 
   return (
-    <div className="contain">
-      <div className="form-container">
+    <div className="contain-user">
+      <div className="form-container-user">
         <h2>Add New Ticket</h2>
 
         <form onSubmit={addTicket} className="ticket-form">

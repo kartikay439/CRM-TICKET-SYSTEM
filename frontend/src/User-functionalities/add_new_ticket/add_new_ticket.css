@@ -1,4 +1,4 @@
-.contain {
+.contain-user {
     height: auto;
     min-height: 100vh;
     width: 100%;
@@ -10,9 +10,9 @@
     box-sizing: border-box;
   }
   
-  .form-container {
+  .form-container-user {
     width: 100%;
-    max-width: 800px; 
+    max-width: 850px; 
     padding: 20px;
     background-color:rgb(250, 232, 144);
     border-radius: 8px;
@@ -31,7 +31,7 @@
     border: 1px solid black;
     border-radius: 4px;
     font-size: 16px;
-    width:100vw;
+    width:20vw;
   }
   
   .ticket-form button {
@@ -51,11 +51,11 @@
   
   /* Responsive Design */
   @media (min-width: 1385px) {
-    .form-container {
+    .form-container-user {
       width: 80%;
       max-width: 950px;
     }
-    .contain {   
+    .contain-user {   
    margin-left:35vh;
    width:70vw;  
     }
@@ -66,11 +66,11 @@
     }
   }
   @media (min-width: 1270px) and (max-width:1385px){
-    .form-container {
+    .form-container-user {
       width: 80%; 
       max-width: 800px;
     }
-    .contain {   
+    .contain-user {   
    margin-left:20vh;
    width:70vw;  
     }
@@ -81,11 +81,11 @@
     }
   }
   @media (min-width: 1000px) and (max-width:1270px){
-    .form-container {
+    .form-container-user {
       width: 100%; /* Default for smaller screens */
       max-width: 800px;
     }
-    .contain {   
+    .contain-user {   
    margin-left:15vh;
    width:70vw;  
     }
@@ -97,17 +97,33 @@
   }
   
   @media (min-width: 500px) and (max-width:1000px){
-    .form-container {
+    .form-container-user {
       width: 110%; 
       max-width: 800px;
     }
-    .contain {   
+    .contain-user {   
    margin-left:15vh;
    width:70vw;  
     }
     .ticket-form input,
     .ticket-form textarea,
     .ticket-form button {
-      width:70vw; 
+      width:65vw; 
+    }
+  }
+
+  @media  (max-width:500px){
+    .form-container-user {
+      width: 110%; 
+      max-width: 800px;
+    }
+    .contain-user {   
+   margin-left:15vh;
+   width:70vw;  
+    }
+    .ticket-form input,
+    .ticket-form textarea,
+    .ticket-form button {
+      width:60vw; 
     }
   }

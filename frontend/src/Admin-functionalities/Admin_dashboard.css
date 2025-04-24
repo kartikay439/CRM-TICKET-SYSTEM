@@ -29,6 +29,10 @@
   /* add new client start */
 .admin-add-new-client{
 margin-top:5vh;
+display: flex;
+flex-direction: column;
+align-items: center;
+justify-content: center;
 }
 
 .client-form input,
@@ -61,14 +65,11 @@ margin-top:5vh;
   height: auto;
   min-height: 120vh;
   width: 100%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
   padding: 10px;
   box-sizing: border-box;
+  width:100vw;
 }
-.form-container {
+.client-form-container {
     width: 100%;
     max-width: 800px; 
     padding: 20px;

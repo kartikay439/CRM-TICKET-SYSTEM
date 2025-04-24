@@ -7,7 +7,7 @@ export const Add_new_client = () => {
 
   return (
     <div className="admin-add-new-client contain">
-           <div className="form-container">
+           <div className="client-form-container">
         <h2>Add New Client</h2>
 
         <form className="client-form">
