@@ -1,11 +1,11 @@
 .lError {
-    height: 100px;
-    width: 60%;
-/* border: #1a1a1a 2px solid; */
 }
 
 .error-box {
-    margin-top: 15px;
+
+    margin: 15px auto;
+    font-size: .5em;
+    /*margin-top: 1em;*/
     padding: 10px;
     /*height: 200px;*/
     background: lightcoral;

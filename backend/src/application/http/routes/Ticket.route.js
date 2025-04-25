@@ -1,5 +1,5 @@
 import {Router} from 'express';
-import {createTicket,fetchAllTickets} from "../controllers/Ticket.controller.js";
+import {createTicket, fetchAllTicketsAdmin, fetchAllTicketsById} from "../controllers/Ticket.controller.js";
 import {upload} from "../middleware/uploadMiddleware.js";
 
 const router = Router();
@@ -18,7 +18,14 @@ router.post(
 router.get(
     '/fetchAllTickets',
     (req, res, next) => {
-      fetchAllTickets(req, res, next);
+      fetchAllTicketsById(req, res, next);
+    }
+);
+
+router.get(
+    '/fetchAllTicketsAdmin',
+    (req, res, next) => {
+      fetchAllTicketsAdmin(req, res, next);
     }
 );
 

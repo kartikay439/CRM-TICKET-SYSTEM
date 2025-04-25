@@ -14,7 +14,7 @@ async function registerUser(userRepository,userData)
     const hashedPassword = await bcrypt.hash(userData.password, 10)
 
     //user model
-    const user = new User(userData.name,userData.email,hashedPassword)
+    const user = new User(userData.name,userData.email,hashedPassword,userData.isAdmin);
     return await userRepository.save(user)
 }
 

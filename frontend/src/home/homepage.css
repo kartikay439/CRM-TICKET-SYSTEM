@@ -1,95 +1,100 @@
-*{
-    margin:0;
-    padding:0;
+* {
+    margin: 0;
+    padding: 0;
     box-sizing: border-box;
 }
 
-.homepage{
+.homepage {
+    /*border: 15px solid red;*/
+    background: red;
     display: flex;
     flex-direction: column;
     /*justify-content: center;*/
 }
 
-.sh{
+.sh {
     display: none;
 }
 
 .custom-nav {
-    background-color:#679ef8;
+    background-color: #679ef8;
     /*border-bottom: 2px solid #222631;*/
-    height: 12vh;
+    height: 10vh;
     display: flex;
     align-items: center;
     justify-content: center;
-    position: fixed; 
+    position: fixed;
     width: 100%;
     z-index: 2;
-  }
-  
-  /* Nav container to center items */
-  .nav-container {
+}
+
+/* Nav container to center items */
+.nav-container {
     width: 90%;
     max-width: 1200px;
     display: flex;
     align-items: center;
     justify-content: space-between;
-  }
-  
+}
 
-  .brand .logo {
+
+.brand .logo {
     height: 75px;
-  }
-  
-  .nav-links {
+}
+
+.nav-links {
     display: flex;
     gap: 30px;
-  }
-  
-  #cap {
+}
+
+#cap {
     font-weight: bold;
     font-size: 18px;
-    color: #222631; 
+    color: #222631;
     text-decoration: none;
-&:hover {
-    color: rgb(255, 255, 255);
- /*transform: scale(1.3);*/
+
+    &:hover {
+        color: rgb(255, 255, 255);
+        /*transform: scale(1.3);*/
+    }
 }
-}
-  /* Toggle button for small screens */
-  .toggle-btn {
+
+/* Toggle button for small screens */
+.toggle-btn {
     display: none;
     background: none;
     border: none;
     font-size: 24px;
     cursor: pointer;
-  }
- 
+}
 
-.homepage{
+
+.homepage {
     position: fixed;
     top: 0;
     left: 0;
 }
 
-.togbtn{
-    &:hover{
-        color:yellow;
+.togbtn {
+    &:hover {
+        color: yellow;
     }
 }
 
-.content{
+.content {
     display: flex;
 
     flex-direction: column;
     justify-content: center;
     align-items: center;
     /*height:90vh;*/
-    background-color:white;
+    background-color: white;
     /* rgb(165, 126, 126); */
     /*position: fixed;*/
     /*z-index: 1;*/
 }
-.lineup{
+
+.lineup {
     /*border: 5px solid black;*/
     display: flex;
     flex-direction: column;
@@ -97,7 +102,8 @@
     align-items: center;
     margin-top: 10vh;
 }
-.lineup__title{
+
+.lineup__title {
     margin-top: 2vw;
     height: 12vw;
     width: 100%;
@@ -108,7 +114,8 @@
     align-items: center;
     justify-content: center;
 }
-.lineup__title h2{
+
+.lineup__title h2 {
     margin: 10vw;
 
     /*border: black solid 2px;*/
@@ -118,15 +125,16 @@
     /*padding: 2vw;*/
     height: 180px;
     text-align: center;
-    font-size:1.2vw;
+    font-size: 1.2vw;
 }
 
 
-#br-img{
-    height:10vw !important;
+#br-img {
+    height: 10vw !important;
     margin-left: 5vw;
-    margin-top:10px;
+    margin-top: 10px;
 }
+
 /*.content p{*/
 /*    height:11vh;*/
 /*    width:60vw;*/
@@ -139,34 +147,35 @@
 /*   }*/
 /*}*/
 
-.img_box{
+.img_box {
     padding: 2vw;
     /*margin: auto;*/
 
     /*border: solid red 1px;*/
     /*margin: auto;*/
-  height:30vw;
-  width:100vw;
-  display: flex;
+    height: 30vw;
+    width: 100vw;
+    display: flex;
     justify-content: center;
     align-items: center;
     gap: 5vw;
-  /*gap:200px;*/
-  /*position:relative;*/
-  /*top:23vh;*/
-  /*left:20vw;*/
+    /*gap:200px;*/
+    /*position:relative;*/
+    /*top:23vh;*/
+    /*left:20vw;*/
 }
 
-.image{
-    height:10vw;
-    border-radius:150px;
+.image {
+    height: 10vw;
+    border-radius: 150px;
     transition: transform 0.3s ease;
-    &:hover{
+
+    &:hover {
         transform: scale(1.2);
     }
 }
 
-.item{
+.item {
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.5), 0 6px 40px 0 rgba(0, 0, 0, 0.5);
     display: flex;
     flex-direction: column;
@@ -175,30 +184,32 @@
     align-items: center;
 }
 
-.item h5{
+.item h5 {
     text-align: center;
     font-size: 1.2vw;
-    transition: transform 0.3s ease; 
-    &:hover{
+    transition: transform 0.3s ease;
+
+    &:hover {
         transform: scale(1.2);
     }
 }
+
 .footer {
-    position: fixed; 
+    position: fixed;
     bottom: 0;
     left: 0;
-    height: 10vh;
+    height: 7vh;
     width: 100%;
-    border-top: 2px solid black;
-    background-color:#679ef8;
-     color:black;
+    /*border-top: 2px solid black;*/
+    background-color: #679ef8;
+    color: black;
     display: flex;
     align-items: center;
     justify-content: center;
     z-index: 2;
 }
 
- 
+
 /*  !* Responsive Design *!*/
 /*  @media (max-width: 768px) {*/
 /*    .toggle-btn {*/

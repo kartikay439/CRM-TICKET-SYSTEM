@@ -70,18 +70,18 @@ export const Header_user_dashboard = ({dashboardView, profileView, feedbackForm,
 
                     >Add New Ticket
                     </button>
-                    <button className="nav-item" onClick={
-                        () => {
-                            setAllFalse();
-                            profileView(true)
-                        }}>Profile
-                    </button>
+                    {/*<button className="nav-item" onClick={*/}
+                    {/*    () => {*/}
+                    {/*        setAllFalse();*/}
+                    {/*        profileView(true)*/}
+                    {/*    }}>Profile*/}
+                    {/*</button>*/}
                     <button className="nav-item" onClick={signout}>Logout</button>
-                    <button className="nav-item" onClick={
-                        () => {
-                            setAllFalse();
-                            feedbackForm(true)
-                        }}>Feedback</button>
+                    {/*<button className="nav-item" onClick={*/}
+                    {/*    () => {*/}
+                    {/*        setAllFalse();*/}
+                    {/*        feedbackForm(true)*/}
+                    {/*    }}>Feedback</button>*/}
                 </div>
             </div>
         </nav>

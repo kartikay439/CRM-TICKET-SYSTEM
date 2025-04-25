@@ -10,6 +10,7 @@ import jwt from "jsonwebtoken";
 import verify from "../../../domain/useCases/user.usecase/VerifyUser.js";
 import UserModel from "../../../infrastructure/db/model/user.model.js";
 import AuthService from "../../../domain/services/auth.service.js";
+import admin from "../../../domain/entities/Admin.js";
 
 const repo = new userRepositoryImplementation()
 
@@ -22,14 +23,23 @@ const options = {
 const signup = asyncHandler(
     async (req, res, {registerUseCase, userRepository}) => {
         //testing purpose
-        const {email, name, password} = req.body;
-        console.log(name, email, password);
+        const {email, name,password,isAdmin,secretCode} = req.body;
+        console.log(name, email, password,isAdmin);
         // console.log(registerUseCase);
+
+
+        // POWERFULL LINE
+        if(isAdmin === true && secretCode !== "6673"){
+            console.log(secretCode);
+            throw new ApiError(400,"Invalid Secret Code")
+        }
+
 
         const user = await registerUser(repo, {
             email,
             name,
             password,
+            isAdmin,
         })
 
         // const auth = new AuthService();
@@ -147,7 +157,27 @@ const hasAccess = asyncHandler(async (req, res) => {
 
 
 const signin = asyncHandler(async (req, res) => {
-    const {email, password} = req.body;
+    const {email, password,isAdmin} = req.body;
+    console.log(email,isAdmin,password)
+
+    if(isAdmin === true){
+        const admin = await UserModel.findOne(
+            {email},
+        )
+        // console.log(admin)
+        if(admin.isAdmin === true){
+            console.log("Admin hai")
+            // return res.status(200).json(new ApiResponse(200,"succesfull admin"))
+        }else {
+            throw new ApiError(401, "user not admin or user not found");
+            return ;
+        }
+
+
+    }
+
+
+
 
     console.log("Login Request:", email, password);
 
@@ -175,6 +205,7 @@ const signin = asyncHandler(async (req, res) => {
 
 const logout = asyncHandler(
     async (req, res) => {
+        console.log("logoi=u")
         res.status(200)
             .clearCookie("accessToken")
             .clearCookie("refreshToken")

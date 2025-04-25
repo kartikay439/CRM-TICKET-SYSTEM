@@ -1,0 +1,60 @@
+.graph{
+    display: flex;
+}
+
+.bubble-graph-container {
+    width:70vw;
+    height: 45vw; 
+    text-align: center;
+    overflow: visible; /* Ensure bubbles aren't clipped */
+  }
+  
+  .bubble-graph {
+    margin-top:15vh;
+    height: 30vw; 
+    overflow: visible; 
+  }
+  
+  .bubble-group {
+    transform-origin: center;
+  }
+  
+  .bubble-image {
+    transition: transform 0.3s ease;
+  }
+  
+  .bubble-border {
+    fill: none;
+    stroke: #333;
+    stroke-width: 2;
+    stroke-opacity: 0.5;
+  }
+  
+  .bubble-label {
+    font-size: 14px;
+    fill: #333;
+    font-family: Arial, sans-serif;
+  }
+  
+  @keyframes revolve {
+    0% {
+      transform: rotate(0deg) translateX(var(--orbit-radius)) rotate(0deg);
+    }
+    100% {
+      transform: rotate(360deg) translateX(var(--orbit-radius)) rotate(-360deg);
+    }
+  }
+  
+  @media (max-width: 768px) {
+    .bubble-graph-container {
+      padding: 15px;
+    }
+  
+    .bubble-graph {
+      height: 500px; /* Adjusted for mobile */
+    }
+  
+    .bubble-label {
+      font-size: 12px;
+    }
+  }

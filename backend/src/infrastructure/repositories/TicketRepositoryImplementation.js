@@ -6,7 +6,21 @@ import ticket from "../../domain/entities/ticket.js";
 
 class TicketRepositoryImplementation extends TicketRepository {
     //-------------------------------------------------------------------ADMIN-------------------------------------------------------------
+    fetchAllTicketsAdmin = async () => {
+        try {
+            const tickets = await Ticket.find({});
 
+            if (tickets.length === 0) {
+                throw new Error("No tickets found for user with id " + userId);
+            }
+
+            console.log(tickets);  // Debugging
+            return tickets;
+        } catch (error) {
+            console.error("Error fetching tickets:", error);
+            throw error;  // Re-throw the error to be handled by the caller
+        }
+    }
 
 
 

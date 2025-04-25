@@ -1,7 +1,9 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
+import {AdminHeader} from "../Admin_header.jsx";
+import {AdminFooter} from "../Admin_footer.jsx";
 
-export const Ticket_table = () => {
+export const Ticket_table_admin = () => {
   const [showModal, setShowModal] = useState(false);
   const [selectedIssue, setSelectedIssue] = useState(null);
   const [tickets, setTickets] = useState([]);
@@ -10,7 +12,7 @@ export const Ticket_table = () => {
     const fetchTickets = async () => {
       try {
         const response = await axios.get(
-            "http://localhost:8000/api/v1/tickets/fetchAllTickets",
+            "http://localhost:8000/api/v1/tickets/fetchAllTicketsAdmin",
             { withCredentials: true }
         );
         setTickets(response.data.data || []);
@@ -41,7 +43,7 @@ export const Ticket_table = () => {
   return (
       <>
 
-
+        <AdminHeader />
         <div className="table-container">
           <table className="issue-table">
             <thead>
@@ -131,6 +133,7 @@ export const Ticket_table = () => {
               </div>
           )}
         </div>
+        <AdminFooter />
       </>
   );
 };

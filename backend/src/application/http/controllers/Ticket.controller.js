@@ -8,7 +8,7 @@ import jwt from "jsonwebtoken";
 
 const ticketRepo = new TicketRepositoryImplementation();
 
-const fetchAllTickets = asyncHandler(async (req, res) => {
+const fetchAllTicketsById = asyncHandler(async (req, res) => {
         const accessToken = req.cookies?.accessToken;
         console.log("hi")
 
@@ -40,6 +40,41 @@ const fetchAllTickets = asyncHandler(async (req, res) => {
         );
 });
 
+
+const fetchAllTicketsAdmin = asyncHandler(async (req, res) => {
+
+
+
+        const accessToken = req.cookies?.accessToken;
+        console.log("hi")
+
+        if (!accessToken) {
+                throw new ApiError(401, "Access token missing");
+        }
+
+        let decoded;
+        try {
+                decoded = jwt.verify(accessToken, process.env.ACCESS_TOKEN_SECRET);
+        } catch (err) {
+                throw new ApiError(401, "Invalid access token");
+        }
+
+        const userId = decoded?._id || decoded?.id; // depends on how you sign the token
+
+        if (!userId) {
+                throw new ApiError(400, "User ID not found in token");
+        }
+
+        const tickets = await ticketRepo.fetchAllTicketsAdmin();
+
+        if (!tickets || tickets.length === 0) {
+                throw new ApiError(404, "No tickets found for this user");
+        }
+
+        return res.status(200).json(
+            new ApiResponse(200, tickets, "Tickets fetched successfully")
+        );
+});
 
 
 
@@ -98,4 +133,4 @@ const createTicket = asyncHandler(async (req, res) => {
         );
 });
 
-export { createTicket ,fetchAllTickets };
+export { createTicket ,fetchAllTicketsById,fetchAllTicketsAdmin };

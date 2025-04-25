@@ -1,11 +1,13 @@
-class Client{
-    constructor(adminId,name,address,phoneNumber,company,totalOrder,orderId){
-        this.adminId = adminId;
+class Client {
+    constructor(name, address, mobile_number, company, total_order, order_id, userId) {
         this.name = name;
         this.address = address;
-        this.phoneNumber = phoneNumber;
+        this.mobile_number = mobile_number;
         this.company = company;
-        this.totalOrder = totalOrder;
-        this.orderId = orderId;
+        this.total_order = total_order;
+        this.order_id = order_id;
+        this.user = userId; // Assuming you store client for a user
     }
 }
+
+export default Client;

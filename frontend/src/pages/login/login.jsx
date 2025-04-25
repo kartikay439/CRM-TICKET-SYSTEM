@@ -1,23 +1,21 @@
-import {useState, useEffect} from "react";
+import { useState, useEffect } from "react";
 import styled from "styled-components";
 import axios from "axios";
-import {useNavigate} from "react-router-dom";
-import {Header} from "../../home/header.jsx";
-import {ErrorComponent} from "../error/error.jsx";
+import { useNavigate } from "react-router-dom";
+import { Header } from "../../home/header.jsx";
+import { ErrorComponent } from "../error/error.jsx";
 
 export const Login = () => {
     const [showPassword, setShowPassword] = useState(false);
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
-    const [error, setError] = useState("no");
+    const [error, setError] = useState("");
     const [failed, setFailed] = useState(false);
     const navigate = useNavigate();
 
     useEffect(() => {
         if (failed) {
-            const timer = setTimeout(() =>
-                    setFailed(false),
-                5000);
+            const timer = setTimeout(() => setFailed(false), 5000);
             return () => clearTimeout(timer);
         }
     }, [failed]);
@@ -40,32 +38,20 @@ export const Login = () => {
     const loginHandler = async (e) => {
         e.preventDefault();
         if (!validateForm()) {
-            console.log("not valid");
             return;
-
         }
 
-
         try {
-            console.log("REQUEST SEND");
-
-            const response = await axios.post("/api/v1/user/signin",
-                {email, password}
-            );
-            console.log(response.data)
-
+            const response = await axios.post("/api/v1/user/signin", { email, password });
             if (response.status === 200) {
-
                 if (response.data.statusCode === 200) {
                     setEmail("");
                     setPassword("");
                     navigate("/user-dashboard");
-                }
-                else {
+                } else {
                     setFailed(true);
                     setError(response.data.data);
                 }
-
             }
         } catch (err) {
             setFailed(true);
@@ -75,30 +61,27 @@ export const Login = () => {
 
     return (
         <StyledWrapper>
-            <Header/>
-            <div className="container">
-                <form className="form-contro">
-                    <p className="title">Login</p>
-                    {/*<div className="error-container">*/}
-                    {/*    {error && <p className="error-message">{error}</p>}*/}
-                    {/*</div>*/}
-                    <div className="input-field">
+            <Header />
+            <div className="login-page">
+                <form className="form-container">
+                    <h2>Login</h2>
+                    <div className="input-group">
                         <input
-                            type="text"
-                            className="form-control"
-                            placeholder="Email"
+                            type="email"
+                            placeholder="Enter your email"
                             value={email}
                             onChange={(e) => setEmail(e.target.value)}
+                            required
                         />
                     </div>
-                    <div className="input-field">
-                        <div className="password-group">
+                    <div className="input-group">
+                        <div className="password-container">
                             <input
                                 type={showPassword ? "text" : "password"}
-                                className="form-control"
-                                placeholder="Password"
+                                placeholder="Enter your password"
                                 value={password}
                                 onChange={(e) => setPassword(e.target.value)}
+                                required
                             />
                             <button
                                 type="button"
@@ -109,125 +92,139 @@ export const Login = () => {
                             </button>
                         </div>
                     </div>
-                    <div className="forgot">
+                    <div className="forgot-password">
                         <p>Forgot Your Password?</p>
-                        <a href="/forgot">Sorry I Forgot</a>
+                        <a href="/forgot">Reset it here</a>
                     </div>
-                    <button type="submit" className="submit-btn" onClick={loginHandler}>Sign In</button>
+                    <button type="submit" className="submit-btn" onClick={loginHandler}>
+                        Sign In
+                    </button>
+                    <div className="admin-link">
+                        <button className="admin-btn" onClick={() => navigate("/register/admin")}>
+                            Are you an Admin?
+                        </button>
+                    </div>
                     <p className="register-link">
-                        Don t have an account?
-                        <a href="/register">Register</a>
+                        Don’t have an account? <a href="/register">Register</a>
                     </p>
+                    {failed && <ErrorComponent message={error} />}
                 </form>
-
-                {/*<ErrorComponent message="hello" />*/}
-                {failed ? <ErrorComponent message={error}/> : <></>}
             </div>
         </StyledWrapper>
     );
 };
 
 const StyledWrapper = styled.div`
-    .container {
+    .login-page {
         display: flex;
+        flex-direction: column;
         justify-content: center;
         align-items: center;
-        flex-direction: column;
         height: 100vh;
+        width: 100vw;
+        background-color: #f0f0f0;
     }
 
-    .form-contro {
-        background-color: #679ef8;
+    .form-container {
+        background-color: #ffffff;
         width: 400px;
-        padding: 25px;
-        border-radius: 12px;
-        box-shadow: 0 4px 60px #679ef8;
-        backdrop-filter: blur(10px);
+        padding: 30px;
+        border-radius: 8px;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
         text-align: center;
     }
 
-    .title {
-        font-size: 32px;
+    h2 {
+        margin-bottom: 20px;
+        font-size: 28px;
         font-weight: bold;
+        color: #333;
     }
 
-    .error-container {
-        min-height: 20px; /* Prevents form shifting */
-        margin-bottom: 10px;
-    }
-
-    .error-message {
-        border: #1a1a1a 2px solid;
-        color: red;
-        font-size: 14px;
-    }
-
-    .input-field {
+    .input-group {
         margin-bottom: 15px;
-    }
-
-    .form-control {
         width: 100%;
-        height: 45px;
-        padding-left: 10px;
-        border: 1.5px solid black;
-        border-radius: 8px;
-        outline: none;
     }
 
-    .password-group {
-        display: flex;
-        align-items: center;
+    input {
+        width: 100%;
+        padding: 12px;
+        border-radius: 8px;
+        border: 1px solid #ccc;
+        font-size: 16px;
+        outline: none;
+        background-color: #f9f9f9;
+    }
+
+    .password-container {
         position: relative;
     }
 
     .toggle-password {
         position: absolute;
         right: 10px;
-        background: black;
-        color: white;
-        border-radius: 5px;
-        padding: 5px;
+        top: 50%;
+        transform: translateY(-50%);
+        background: transparent;
+        border: none;
         cursor: pointer;
-        font-size: 14px;
+        color: #333;
     }
 
-    .forgot {
+    .forgot-password {
         display: flex;
         justify-content: space-between;
-        font-weight: bold;
+        font-size: 14px;
         margin-top: 10px;
     }
 
-    .forgot a {
-        color: black;
+    .forgot-password a {
+        color: #0066cc;
+        text-decoration: none;
     }
 
     .submit-btn {
         width: 100%;
-        height: 45px;
-        margin-top: 15px;
-        background: linear-gradient(180deg, #363636, #000);
+        padding: 12px;
+        background-color: #007bff;
         color: #fff;
-        border: none;
-        border-radius: 12px;
         font-size: 18px;
-        font-weight: bold;
+        border: none;
+        border-radius: 8px;
         cursor: pointer;
+        transition: background-color 0.3s;
     }
 
     .submit-btn:hover {
-        box-shadow: 0px 0px 5px 2px #ffffff;
+        background-color: #0056b3;
+    }
+
+    .admin-link {
+        margin-top: 20px;
+    }
+
+    .admin-btn {
+        background-color: #ff5722;
+        color: #fff;
+        padding: 12px;
+        width: 100%;
+        border: none;
+        border-radius: 8px;
+        cursor: pointer;
+    }
+
+    .admin-btn:hover {
+        background-color: #e64a19;
     }
 
     .register-link {
         margin-top: 15px;
-        font-weight: bold;
+        font-size: 14px;
     }
 
     .register-link a {
-        color: black;
+        color: #007bff;
     }
-
-
 `;
+
+export default Login;

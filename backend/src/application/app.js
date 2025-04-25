@@ -23,6 +23,11 @@ app.use("/api/v1/user", authRoutes());
 import ticketsRoutes from "./http/routes/Ticket.route.js";
 app.use("/api/v1/tickets", ticketsRoutes);
 
+import clientsRoutes from "./http/routes/Client.route.js";
+app.use("/api/v1/client", clientsRoutes());
+
+
+
 import errorHandler from "../utils/ErrorHandler.js";
 app.use(errorHandler);
 

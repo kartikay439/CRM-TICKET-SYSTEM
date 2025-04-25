@@ -1,16 +1,16 @@
 import React, { useState } from "react";
-import {AdminHeader} from "./Admin_header.jsx";
-import { AdminFooter } from "./Admin_footer.jsx";
-import { Show_Hide } from "./show_hide.jsx";
-import user_image from "../assets/img/user_details.png";
-import user_delete from "../assets/img/user_delete.png";
-import user_protected from "../assets/img/password_protection.jpeg";
-
-
+import {AdminHeader} from "../Admin_header.jsx";
+import { AdminFooter } from "../Admin_footer.jsx";
+import { Show_Hide } from "../show_hide.jsx";
+import user_image from "../../assets/img/user_details.png";
+import user_delete from "../../assets/img/user_delete.png";
+// import user_protected from "../assets/img/password_protection.jpeg";
+import { DotLottieReact } from '@lottiefiles/dotlottie-react';
+import './Admin-Profile.css';
 export const AdminProfile = () => {
 const [name, setName] = useState("A.K.S THE GREAT");
   const [email, setEmail] = useState("mitram.email75@gmail.com");
-  const [password, setpassword] = useState("S9n2k@sh58");
+  const [password, setpassword] = useState("123456789");
   const [isEmailChanged, setIsEmailChanged] = useState(false);
 
 
@@ -36,20 +36,20 @@ const [name, setName] = useState("A.K.S THE GREAT");
     alert("Password updated!");
   };
   return (
-    <div className="comp-profile">
-    <div className="container-profile">
-      <div className="pro_img_container">
+    <div className="comp-profile-client">
+    <div className="container-profile-client">
+      <div className="pro_img_container-client">
           <img src={user_image} id="user_img" alt="user_image" />
-      <div className="profile">
+      <div className="profile-client">
         <form action="" onSubmit={handleSubmit}>
           <h2>Profile Information</h2>
           <p>Update your account's profile information and email address.</p>
 
           <label htmlFor="Name"><b>Name</b></label>
-          <input  className="input-profile" type="text"  name="name"  placeholder="Enter Your Name" value={name} onChange={(e) => setName(e.target.value)}required/>
+          <input  className="input-profile-client" type="text"  name="name"  placeholder="Enter Your Name" value={name} onChange={(e) => setName(e.target.value)}required/>
 
           <label htmlFor="Email"><b>Email</b></label>
-          <input  className="input-profile" type="email" name="email"placeholder="Enter Your Email address" value={email} onChange={handleEmailChange} required/>
+          <input  className="input-profile-client" type="email" name="email"placeholder="Enter Your Email address" value={email} onChange={handleEmailChange} required/>
 
           {isEmailChanged && (
             <p>
@@ -60,29 +60,37 @@ const [name, setName] = useState("A.K.S THE GREAT");
         </form>
       </div>
       </div>
-      <div className="pro_img_container">
-      <img src={user_protected} id="user_protected" alt="user_protected" />
-      <div className="profile-password">
+      <div className="pro_img_container-client">
+      {/* <img src={user_protected} id="user_protected" alt="user_protected" /> */}
+      <DotLottieReact
+            src="https://lottie.host/1d0d9219-887b-484b-99d7-6de194ae26dc/DMMxyjigsj.lottie"
+            loop
+            autoplay
+            id="user_protected" 
+            alt="user_protected_animation"
+            style={{ width: '300px', height: '300px' }}
+          />
+      <div className="profile-password-client">
         <form action="" onSubmit={handleSubmitPassword}>
           <h2>Update Password</h2>
           <p>Ensure your account is using a long, random password to stay secure.</p>
 
           <label htmlFor="Current Password"><b>Current Password</b></label>
-          <input className="input-profile" type="text"  name="password"  placeholder="Enter Your Password" value={password} onChange={(e) => setpassword(e.target.value)}required/>
+          <input className="input-profile-client" type="text"  name="password"  placeholder="Enter Your Password" value={password} onChange={(e) => setpassword(e.target.value)}required/>
 
           <label htmlFor="New Password"><b>New Password</b></label>
-          <input className="input-profile" type="text" name="new_password"placeholder="Enter New Password"  required/>
+          <input className="input-profile-client" type="text" name="new_password"placeholder="Enter New Password"  required/>
 
           <label htmlFor="Confirm Password"><b>New Password</b></label>
-          <input className="input-profile" type="text" name="confirm_password"placeholder="Enter Confirm Password"  required/>
+          <input className="input-profile-client" type="text" name="confirm_password"placeholder="Enter Confirm Password"  required/>
 
           <button type="submit">SAVE</button>
         </form>
       </div>
       </div>
-      <div className="pro_img_container">
+      <div className="pro_img_container-client">
       <img src={user_delete} id="user_delete" alt="user_delete" />
-      <div className="profile-delete">
+      <div className="profile-delete-client">
   <form action="" onSubmit={handledelete}>
     <h2>Delete Account</h2>
     <p>Permanently delete your account.</p>

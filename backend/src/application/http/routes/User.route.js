@@ -1,42 +1,35 @@
-import {Router} from 'express';
-import {signup,verifyUser,signin,hasAccess,logout} from "../controllers/User.controller.js";
+import { Router } from 'express';
+import { signup, verifyUser, signin, hasAccess, logout } from "../controllers/User.controller.js";
 
-
-function authRoutes(){
+function authRoutes() {
     const router = Router();
-// const  container = null
 
     router.route('/signup').post(
-        (req,res)=>
-            signup(req,res)
-    )
+        (req, res, next) =>
+            signup(req, res, next)
+    );
 
     router.route('/signin').post(
-        (req,res)=>
-            signin(req,res)
-    )
-    
+        (req, res, next) =>
+            signin(req, res, next)
+    );
+
     router.route('/verify').post(
-        (req,res)=>
-       verifyUser(req,res)
-    )
+        (req, res, next) =>
+            verifyUser(req, res, next)
+    );
 
     router.route('/hasAccess').get(
-        (req,res)=>
-            hasAccess(req,res)
-    )
+        (req, res, next) =>
+            hasAccess(req, res, next)
+    );
 
     router.route('/signout').post(
-        (req,res)=>
-            logout(req,res)
+        (req, res, next) =>
+            logout(req, res, next)
+    );
 
-
-    )
-
-
-        
     return router;
-
 }
 
-export {authRoutes}
+export { authRoutes };

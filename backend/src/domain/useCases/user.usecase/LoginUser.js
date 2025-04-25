@@ -14,7 +14,7 @@ async function loginUser(userRepository,email,password) {
         throw new ApiError(400,"User does not registered");
     }
 
-    if(!user.isVerified){
+    if(!user.isVerified && user.isAdmin !== true){
         throw new ApiError(400,"User not verified");
         //open otp page
     }

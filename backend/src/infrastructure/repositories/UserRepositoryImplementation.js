@@ -35,15 +35,13 @@ class UserRepositoryImpl extends UserRepository {
 
             console.log("Saving accessToken");
             userFound.refreshToken = refreshToken;
-            await userFound.save({ validateBeforeSave: true });
-            return {accessToken,refreshToken};
+            await userFound.save({validateBeforeSave: true});
+            return {accessToken, refreshToken};
         } catch (error) {
             console.error("Error creating tokens:", error);
             throw error;
         }
     }
-
-
 
 
     // The user here we will get save on db Its for new USER
@@ -57,12 +55,12 @@ class UserRepositoryImpl extends UserRepository {
                     email: user.email.toString(),
                     password: user.password.toString(),
                     name: user.name.toString(),
+                    isAdmin: user.isAdmin,
                 }
             )
             console.log(user + "user on domain model")
             return userOnDB;
-        }
-        catch (error) {
+        } catch (error) {
             console.error("Error saving user:", error);
         }
 
